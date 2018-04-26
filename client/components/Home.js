@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Map } from '.';
-import { usStates } from '../maps/us-states';
+import { usStates } from '../utils';
 
 export const Home = (props) => {
 
