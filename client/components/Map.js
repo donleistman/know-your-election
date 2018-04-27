@@ -4,6 +4,7 @@ import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
 import { updateMap } from '../store';
 import { checkMap, answers } from '../utils';
+import { Button } from 'semantic-ui-react';
 
 class Map extends React.Component {
   constructor(props) {
@@ -73,9 +74,9 @@ class Map extends React.Component {
       <div>
         <p>map component</p>
         <svg ref={node => this.node = node} width={this.width} height={this.height} />
-        <button onClick={() => checkMap(this.props.map, answers, '2008')} >
+        <Button onClick={() => checkMap(this.props.map, answers, '2008')} >
           Check Map
-        </button>
+        </Button>
       </div>
     );
   }
