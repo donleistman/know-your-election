@@ -23,3 +23,8 @@ form div {
 path:hover {
   opacity: 0.9;
 }
+
+#map-segment {
+  width: 900px;
+  margin: 0 auto;
+}

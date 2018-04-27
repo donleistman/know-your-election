@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
-import { updateMap } from '../store';
+import { updateMap, updateMessage } from '../store';
 import { checkMap, answers } from '../utils';
-import { Button } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
 
-class Map extends React.Component {
+class Game extends React.Component {
   constructor(props) {
     super(props);
     this.drawMap.bind(this);
@@ -16,12 +16,11 @@ class Map extends React.Component {
   height = this.props.size[1];
 
   componentDidMount() {
-    console.log('component did mount!');
     this.drawMap();
   }
 
   drawMap() {
-    const updateMap = this.props.updateMap;
+    const handleUpdateMap = this.props.handleUpdateMap;
 
     const node = this.node;
     const w = this.width;
@@ -52,29 +51,31 @@ class Map extends React.Component {
         const map = this.props.map;
 
         if (!map[d.id] || map[d.id] === '-') {
-          updateMap(d.id, 'D');
+          handleUpdateMap(d.id, 'D');
           newColor = 'blue';
         } else if (map[d.id] === 'D') {
-          updateMap(d.id, 'R');
+          handleUpdateMap(d.id, 'R');
           newColor = 'red';
         } else if (map[d.id] === 'R') {
-          updateMap(d.id, '-');
+          handleUpdateMap(d.id, '-');
           newColor = 'gray';
         }
         select(`#state${d.id}`)
           .style('fill', newColor);
-      })
-      ;
-
-
+      });
   }
 
   render() {
     return (
       <div>
-        <p>map component</p>
-        <svg ref={node => this.node = node} width={this.width} height={this.height} />
-        <Button onClick={() => checkMap(this.props.map, answers, '2008')} >
+        <Segment id="map-segment">
+          <svg
+            ref={node => this.node = node}
+            width={this.width}
+            height={this.height}
+          />
+        </Segment>
+        <Button onClick={() => this.props.handleCheckMap(this.props.map, answers, '2008')} >
           Check Map
         </Button>
       </div>
@@ -93,9 +94,10 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    updateMap: (stateId, status) => dispatch(updateMap(stateId, status))
+    handleUpdateMap: (stateId, status) => dispatch(updateMap(stateId, status)),
+    handleCheckMap: (map, answer, year) => dispatch(updateMessage(checkMap(map, answer, year)))
   };
 };
 
-export default connect(mapState, mapDispatch)(Map);
+export default connect(mapState, mapDispatch)(Game);
 

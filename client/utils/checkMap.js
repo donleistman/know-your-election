@@ -7,5 +7,5 @@ export const checkMap = (map, answer, year) => {
     }
   });
   console.log(`You got ${numStatesCorrect} / 51 states correct!`);
-  return numStatesCorrect;
+  return `You got ${numStatesCorrect} / 51 states correct!`;
 };
