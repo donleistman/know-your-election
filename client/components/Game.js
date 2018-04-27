@@ -9,7 +9,8 @@ import { Button, Segment } from 'semantic-ui-react';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.drawMap.bind(this);
+    this.drawMap = this.drawMap.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   width = this.props.size[0];
@@ -17,6 +18,31 @@ class Game extends React.Component {
 
   componentDidMount() {
     this.drawMap();
+  }
+
+  clickHandler(d, i) {
+    // update map state
+    console.log(this.props);
+    let newColor;
+    const map = this.props.mapState;
+
+    const demColor = 'rgb(27, 93, 216)';
+    const repubColor = 'rgb(212, 47, 47)';
+    const deselectedColor = 'rgb(165, 165, 165)';
+    const disabledColor = 'rgb(238, 238, 238)';
+
+    if (!map[d.id] || map[d.id] === '-') {
+      this.props.handleUpdateMap(d.id, 'D');
+      newColor = demColor;
+    } else if (map[d.id] === 'D') {
+      this.props.handleUpdateMap(d.id, 'R');
+      newColor = repubColor;
+    } else if (map[d.id] === 'R') {
+      this.props.handleUpdateMap(d.id, '-');
+      newColor = deselectedColor;
+    }
+    select(`#state${d.id}`)
+      .style('fill', newColor);
   }
 
   drawMap() {
@@ -50,24 +76,7 @@ class Game extends React.Component {
         // return `rgb(${i * 100 % 255}, 255, 255)`;
         return deselectedColor;
       })
-      .on('click', (d, i) => {
-        // update map state
-        let newColor;
-        const map = this.props.map;
-
-        if (!map[d.id] || map[d.id] === '-') {
-          handleUpdateMap(d.id, 'D');
-          newColor = demColor;
-        } else if (map[d.id] === 'D') {
-          handleUpdateMap(d.id, 'R');
-          newColor = repubColor;
-        } else if (map[d.id] === 'R') {
-          handleUpdateMap(d.id, '-');
-          newColor = deselectedColor;
-        }
-        select(`#state${d.id}`)
-          .style('fill', newColor);
-      });
+      .on('click', this.clickHandler);
   }
 
   render() {
