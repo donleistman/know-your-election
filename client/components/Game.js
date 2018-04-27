@@ -2,63 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
-import { updateMap, updateMessage, startGame } from '../store';
-import { checkMap, answers } from '../utils';
+import { updateMessage, startGame } from '../store';
+import { checkMap, answers, toggleState } from '../utils';
 import { Button, Segment } from 'semantic-ui-react';
+import { deselectedColor, mapWidth, mapHeight } from '../utils/properties';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.drawMap = this.drawMap.bind(this);
-    this.clickHandler = this.clickHandler.bind(this);
+    this.toggleState = toggleState.bind(this);
   }
-
-  width = this.props.size[0];
-  height = this.props.size[1];
 
   componentDidMount() {
     this.drawMap();
   }
 
-  clickHandler(d, i) {
-    // update map state
-    console.log(this.props);
-    let newColor;
-    const map = this.props.mapState;
-
-    const demColor = 'rgb(27, 93, 216)';
-    const repubColor = 'rgb(212, 47, 47)';
-    const deselectedColor = 'rgb(165, 165, 165)';
-    const disabledColor = 'rgb(238, 238, 238)';
-
-    if (!map[d.id] || map[d.id] === '-') {
-      this.props.handleUpdateMap(d.id, 'D');
-      newColor = demColor;
-    } else if (map[d.id] === 'D') {
-      this.props.handleUpdateMap(d.id, 'R');
-      newColor = repubColor;
-    } else if (map[d.id] === 'R') {
-      this.props.handleUpdateMap(d.id, '-');
-      newColor = deselectedColor;
-    }
-    select(`#state${d.id}`)
-      .style('fill', newColor);
-  }
-
   drawMap() {
-    const handleUpdateMap = this.props.handleUpdateMap;
-
     const node = this.node;
-    const w = this.width;
-    const h = this.height;
-
-    const demColor = 'rgb(27, 93, 216)';
-    const repubColor = 'rgb(212, 47, 47)';
-    const deselectedColor = 'rgb(165, 165, 165)';
-    const disabledColor = 'rgb(238, 238, 238)';
 
     const projection = geoAlbersUsa()
-      .translate([w / 2, h / 2])
+      .translate([mapWidth / 2, mapHeight / 2])
       .scale([1100]);
     const path = geoPath()
       .projection(projection);
@@ -76,7 +40,7 @@ class Game extends React.Component {
         // return `rgb(${i * 100 % 255}, 255, 255)`;
         return deselectedColor;
       })
-      .on('click', this.clickHandler);
+      .on('click', this.toggleState);
   }
 
   render() {
@@ -92,8 +56,8 @@ class Game extends React.Component {
         <Segment id="map-segment">
           <svg
             ref={node => this.node = node}
-            width={this.width}
-            height={this.height}
+            width={mapWidth}
+            height={mapHeight}
           />
         </Segment>
       </div>
@@ -113,7 +77,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleUpdateMap: (stateId, status) => dispatch(updateMap(stateId, status)),
     handleCheckMap: (mapState, answer, year) => dispatch(updateMessage(checkMap(mapState, answer, year))),
     handleStartGame: () => dispatch(startGame())
   };

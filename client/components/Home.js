@@ -11,7 +11,6 @@ export const Home = () => {
       <HeaderBar />
       <MessageBar />
       <Game
-        size={[900, 500]} // for bar chart test
         usStates={usStates}
       />
     </div>
