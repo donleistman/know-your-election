@@ -1,3 +1,7 @@
+/*eslint-disable quote-props*/
+/*eslint-disable quotes*/
+
+
 export const usStates = {
   "type": "FeatureCollection",
   "features": [
@@ -4613,7 +4617,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "04",
+      "id": "03",
       "properties": {
         "name": "Arizona"
       },
@@ -4755,7 +4759,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "05",
+      "id": "04",
       "properties": {
         "name": "Arkansas"
       },
@@ -4917,7 +4921,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "06",
+      "id": "05",
       "properties": {
         "name": "California"
       },
@@ -5303,7 +5307,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "08",
+      "id": "06",
       "properties": {
         "name": "Colorado"
       },
@@ -5381,7 +5385,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "09",
+      "id": "07",
       "properties": {
         "name": "Connecticut"
       },
@@ -5459,7 +5463,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "10",
+      "id": "08",
       "properties": {
         "name": "Delaware"
       },
@@ -5525,7 +5529,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "11",
+      "id": "09",
       "properties": {
         "name": "District of Columbia"
       },
@@ -5559,7 +5563,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "12",
+      "id": "10",
       "properties": {
         "name": "Florida"
       },
@@ -5885,7 +5889,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "13",
+      "id": "11",
       "properties": {
         "name": "Georgia"
       },
@@ -6103,7 +6107,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "15",
+      "id": "12",
       "properties": {
         "name": "Hawaii"
       },
@@ -6331,7 +6335,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "16",
+      "id": "13",
       "properties": {
         "name": "Idaho"
       },
@@ -6609,7 +6613,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "17",
+      "id": "14",
       "properties": {
         "name": "Illinois"
       },
@@ -6891,7 +6895,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "18",
+      "id": "15",
       "properties": {
         "name": "Indiana"
       },
@@ -7089,7 +7093,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "19",
+      "id": "16",
       "properties": {
         "name": "Iowa"
       },
@@ -7303,7 +7307,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "20",
+      "id": "17",
       "properties": {
         "name": "Kansas"
       },
@@ -7369,7 +7373,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "21",
+      "id": "18",
       "properties": {
         "name": "Kentucky"
       },
@@ -7683,7 +7687,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "22",
+      "id": "19",
       "properties": {
         "name": "Louisiana"
       },
@@ -8001,7 +8005,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "23",
+      "id": "20",
       "properties": {
         "name": "Maine"
       },
@@ -8279,7 +8283,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "24",
+      "id": "21",
       "properties": {
         "name": "Maryland"
       },
@@ -8555,7 +8559,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "25",
+      "id": "22",
       "properties": {
         "name": "Massachusetts"
       },
@@ -8709,7 +8713,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "26",
+      "id": "23",
       "properties": {
         "name": "Michigan"
       },
@@ -9345,7 +9349,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "27",
+      "id": "24",
       "properties": {
         "name": "Minnesota"
       },
@@ -9691,7 +9695,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "28",
+      "id": "25",
       "properties": {
         "name": "Mississippi"
       },
@@ -9889,7 +9893,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "29",
+      "id": "26",
       "properties": {
         "name": "Missouri"
       },
@@ -10115,7 +10119,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "30",
+      "id": "27",
       "properties": {
         "name": "Montana"
       },
@@ -10337,7 +10341,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "31",
+      "id": "28",
       "properties": {
         "name": "Nebraska"
       },
@@ -10467,7 +10471,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "32",
+      "id": "29",
       "properties": {
         "name": "Nevada"
       },
@@ -10565,7 +10569,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "33",
+      "id": "30",
       "properties": {
         "name": "New Hampshire"
       },
@@ -10691,7 +10695,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "34",
+      "id": "31",
       "properties": {
         "name": "New Jersey"
       },
@@ -10833,7 +10837,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "35",
+      "id": "32",
       "properties": {
         "name": "New Mexico"
       },
@@ -10915,7 +10919,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "36",
+      "id": "33",
       "properties": {
         "name": "New York"
       },
@@ -11201,7 +11205,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "37",
+      "id": "34",
       "properties": {
         "name": "North Carolina"
       },
@@ -11459,7 +11463,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "38",
+      "id": "35",
       "properties": {
         "name": "North Dakota"
       },
@@ -11537,7 +11541,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "39",
+      "id": "36",
       "properties": {
         "name": "Ohio"
       },
@@ -11739,7 +11743,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "40",
+      "id": "37",
       "properties": {
         "name": "Oklahoma"
       },
@@ -11933,7 +11937,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "41",
+      "id": "38",
       "properties": {
         "name": "Oregon"
       },
@@ -12171,7 +12175,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "42",
+      "id": "39",
       "properties": {
         "name": "Pennsylvania"
       },
@@ -12317,7 +12321,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "44",
+      "id": "40",
       "properties": {
         "name": "Rhode Island"
       },
@@ -12397,7 +12401,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "45",
+      "id": "41",
       "properties": {
         "name": "South Carolina"
       },
@@ -12587,7 +12591,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "46",
+      "id": "42",
       "properties": {
         "name": "South Dakota"
       },
@@ -12717,7 +12721,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "47",
+      "id": "43",
       "properties": {
         "name": "Tennessee"
       },
@@ -12903,7 +12907,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "48",
+      "id": "44",
       "properties": {
         "name": "Texas"
       },
@@ -13525,7 +13529,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "49",
+      "id": "45",
       "properties": {
         "name": "Utah"
       },
@@ -13587,7 +13591,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "50",
+      "id": "46",
       "properties": {
         "name": "Vermont"
       },
@@ -13713,7 +13717,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "51",
+      "id": "47",
       "properties": {
         "name": "Virginia"
       },
@@ -14037,7 +14041,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "53",
+      "id": "48",
       "properties": {
         "name": "Washington"
       },
@@ -14349,7 +14353,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "54",
+      "id": "49",
       "properties": {
         "name": "West Virginia"
       },
@@ -14623,7 +14627,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "55",
+      "id": "50",
       "properties": {
         "name": "Wisconsin"
       },
@@ -14937,7 +14941,7 @@ export const usStates = {
     },
     {
       "type": "Feature",
-      "id": "56",
+      "id": "51",
       "properties": {
         "name": "Wyoming"
       },
@@ -14996,88 +15000,6 @@ export const usStates = {
             [
               -109.080842,
               45.002073
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "72",
-      "properties": {
-        "name": "Puerto Rico"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -66.448338,
-              17.984326
-            ],
-            [
-              -66.771478,
-              18.006234
-            ],
-            [
-              -66.924832,
-              17.929556
-            ],
-            [
-              -66.985078,
-              17.973372
-            ],
-            [
-              -67.209633,
-              17.956941
-            ],
-            [
-              -67.154863,
-              18.19245
-            ],
-            [
-              -67.269879,
-              18.362235
-            ],
-            [
-              -67.094617,
-              18.515589
-            ],
-            [
-              -66.957694,
-              18.488204
-            ],
-            [
-              -66.409999,
-              18.488204
-            ],
-            [
-              -65.840398,
-              18.433435
-            ],
-            [
-              -65.632274,
-              18.367712
-            ],
-            [
-              -65.626797,
-              18.203403
-            ],
-            [
-              -65.730859,
-              18.186973
-            ],
-            [
-              -65.834921,
-              18.017187
-            ],
-            [
-              -66.234737,
-              17.929556
-            ],
-            [
-              -66.448338,
-              17.984326
             ]
           ]
         ]

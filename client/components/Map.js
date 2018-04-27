@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { scaleLinear } from 'd3-scale';
-import { max } from 'd3-array';
 import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
 import { updateMap } from '../store';
+import { checkMap, answers } from '../utils';
 
 class Map extends React.Component {
   constructor(props) {
@@ -40,26 +39,25 @@ class Map extends React.Component {
       .append('path')
       .attr('d', path)
       .attr('id', d => {
-        console.log(d.id, d.properties.name);
         return 'state' + d.id;
       })
       .style('fill', (d, i) => {
         // return `rgb(${i * 100 % 255}, 255, 255)`;
         return 'gray';
       })
-      .on('click', d => {
+      .on('click', (d, i) => {
         // update map state
         let newColor;
         const map = this.props.map;
 
-        if (!map[d.id] || map[d.id] === 'gray') {
-          updateMap(d.id, 'blue');
+        if (!map[d.id] || map[d.id] === '-') {
+          updateMap(d.id, 'D');
           newColor = 'blue';
-        } else if (map[d.id] === 'blue') {
-          updateMap(d.id, 'red');
+        } else if (map[d.id] === 'D') {
+          updateMap(d.id, 'R');
           newColor = 'red';
-        } else if (map[d.id] === 'red') {
-          updateMap(d.id, 'gray');
+        } else if (map[d.id] === 'R') {
+          updateMap(d.id, '-');
           newColor = 'gray';
         }
         select(`#state${d.id}`)
@@ -75,6 +73,9 @@ class Map extends React.Component {
       <div>
         <p>map component</p>
         <svg ref={node => this.node = node} width={this.width} height={this.height} />
+        <button onClick={() => checkMap(this.props.map, answers, '2008')} >
+          Check Map
+        </button>
       </div>
     );
   }
