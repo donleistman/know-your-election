@@ -2,29 +2,36 @@ import axios from 'axios';
 import history from '../history';
 
 const initialState = {
-  isCurrentGame: false
+  isCurrentGame: false,
+  secondsRemaining: 0
 };
 
 /**
  * ACTION TYPES
  */
-const TOGGLE_GAME_STATUS = 'TOGGLE_GAME_STATUS';
-
+const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
+const GAME_START = 'GAME_START';
+const GAME_END = 'GAME_END';
 
 /**
  * ACTION CREATORS
  */
-export const toggleGameStatus = () => ({
-  type: TOGGLE_GAME_STATUS
+
+export const gameStart = () => ({
+  type: GAME_START
+});
+
+export const gameEnd = () => ({
+  type: GAME_END
+});
+
+export const countdown = () => ({
+  type: COUNTDOWN_SECONDS
 });
 
 /**
  * THUNK CREATORS
  */
-export const startGame = () =>
-  (dispatch) => {
-    dispatch(toggleGameStatus());
-  };
 
 
 /**
@@ -32,10 +39,12 @@ export const startGame = () =>
  */
 export default function (state = initialState, action) {
   switch (action.type) {
-    case TOGGLE_GAME_STATUS:
-      return state.isCurrentGame ?
-        Object.assign({}, state, { isCurrentGame: false }) :
-        Object.assign({}, state, { isCurrentGame: true });
+    case GAME_START:
+      return { ...state, isCurrentGame: true };
+    case GAME_END:
+      return { ...state, isCurrentGame: false };
+    case COUNTDOWN_SECONDS:
+      return { ...state, secondsRemaining: state.secondsRemaining - 1 };
     default:
       return state;
   }

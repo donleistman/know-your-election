@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Game, HeaderBar, MessageBar } from '.';
-import { usStates } from '../utils';
-
 
 export const Home = () => {
 
@@ -10,9 +8,7 @@ export const Home = () => {
     <div>
       <HeaderBar />
       <MessageBar />
-      <Game
-        usStates={usStates}
-      />
+      <Game />
     </div>
   );
 };
