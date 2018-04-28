@@ -6,9 +6,10 @@ import mapStatus from './mapStatus';
 import user from './user';
 import message from './message';
 import game from './game';
+import answers from './answers';
 
 
-const reducer = combineReducers({ mapStatus, user, message, game });
+const reducer = combineReducers({ mapStatus, user, message, game, answers });
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true })
@@ -20,3 +21,4 @@ export * from './mapStatus';
 export * from './user';
 export * from './message';
 export * from './game';
+export * from './answers';

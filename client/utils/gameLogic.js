@@ -1,6 +1,6 @@
 import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
-import { store, updateMap, gameStart, gameEnd } from '../store';
+import { store, updateMap, gameStart, gameEnd, fetchAnswers } from '../store';
 import { usStates } from '.';
 
 import {
@@ -46,6 +46,11 @@ export const drawMap = function () {
 
 export const startGame = (states) => {
   store.dispatch(gameStart());
+
+  //TODO determine random year
+  const year = 2016;
+  store.dispatch(fetchAnswers(year));
+
   states.style('fill', (d, i) => {
     // add in condition here for whether a state was present
     // in a given year
@@ -57,7 +62,7 @@ export const startGame = (states) => {
   // should instead set an interval to update game counter
   // then continually check state
   // and end the game when the seconds remaining on the state reaches 0
-  setTimeout(endGame, 3000);
+  // setTimeout(endGame, 3000);
 };
 
 export const endGame = () => {
@@ -70,16 +75,17 @@ export const toggleState = function (d, i) {
   // update map state
   let newColor;
   const mapStatus = this.props.mapStatus;
+  const stateId = Number(d.id);
 
   if (isCurrentGame) {
-    if (!mapStatus[d.id] || mapStatus[d.id] === '-') {
-      dispatch(updateMap(d.id, 'D'));
+    if (!mapStatus[stateId] || mapStatus[stateId] === '-') {
+      dispatch(updateMap(stateId, 'Democrat'));
       newColor = demColor;
-    } else if (mapStatus[d.id] === 'D') {
-      dispatch(updateMap(d.id, 'R'));
+    } else if (mapStatus[stateId] === 'Democrat') {
+      dispatch(updateMap(stateId, 'Republican'));
       newColor = repubColor;
-    } else if (mapStatus[d.id] === 'R') {
-      dispatch(updateMap(d.id, '-'));
+    } else if (mapStatus[stateId] === 'Republican') {
+      dispatch(updateMap(stateId, '-'));
       newColor = deselectedColor;
     }
     select(`#state${d.id}`)
@@ -88,10 +94,12 @@ export const toggleState = function (d, i) {
 };
 
 
-export const checkMap = (mapStatus, answer, year) => {
+export const checkMap = () => {
+  const { answers, mapStatus } = store.getState();
+
   let numStatesCorrect = 0;
   Object.keys(mapStatus).forEach(stateId => {
-    if (answer[year][stateId].winner === mapStatus[stateId]) {
+    if (answers[stateId].winner === mapStatus[stateId]) {
       numStatesCorrect++;
     }
   });

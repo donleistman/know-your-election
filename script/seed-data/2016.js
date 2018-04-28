@@ -2,12 +2,14 @@ const candidates2016 = [
   {
     "id": "1",
     "name": "Donald Trump",
-    "party": "Republican"
+    "party": "Republican",
+    year: 2016
   },
   {
     "id": "2",
     "name": "Hillary Clinton",
-    "party": "Democratic"
+    "party": "Democrat",
+    year: 2016
   },
 ];
 
@@ -830,7 +832,7 @@ const states2016 = [
   },
   {
     "year": "2016",
-    "stateId": "",
+    "stateId": null,
     "name": "Total",
     "ev": "538",
     "votesWon": "304",
@@ -838,7 +840,7 @@ const states2016 = [
   },
   {
     "year": "2016",
-    "stateId": "",
+    "stateId": null,
     "name": "Total",
     "ev": "538",
     "votesWon": "227",
