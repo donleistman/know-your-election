@@ -29,7 +29,12 @@ class Game extends React.Component {
             width={mapWidth}
             height={mapHeight}
           />
-          {!isCurrentGame && isFirstGame && <BtnStart />}
+          {!isCurrentGame && isFirstGame &&
+            <div id="start-btn-container">
+              <BtnStart gameType="solo" btnText="Play Solo" />
+              <BtnStart gameType="collab" btnText="Play Online!" />
+            </div>
+          }
         </Segment>
         <RightSidebar />
       </Segment.Group>

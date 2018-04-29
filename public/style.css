@@ -75,11 +75,15 @@ path:hover {
   display: flex;
 }
 
-#start-btn {
+#start-btn-container {
   position: absolute;
-  top: calc(50% - 2em);
+  top: calc(50% - 5em);
   right: calc(50% - 5em);
-  margin: 0;
+}
+
+#start-btn {
+  display: block;
+  margin: 12px 0;
   padding: 1.5em;
   height: 4em;
   width: 10em;

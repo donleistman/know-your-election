@@ -1,11 +1,9 @@
-import socket from '../socket';
-
-// CLIENT STORE
+// SERVER STORE
 
 const initialState = {
   isCurrentGame: false,
   secondsRemaining: 0,
-  isFirstGame: true,
+  // isFirstGame: true,
   gameClock: null,
   gameYear: null,
   gameType: null,
@@ -19,7 +17,6 @@ const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
 const GAME_START = 'GAME_START';
 const GAME_END = 'GAME_END';
 const GET_GAME_YEAR = 'GET_GAME_YEAR';
-const PLAY_FIRST_GAME = 'PLAY_FIRST_GAME';
 const PLAYERS_INC = 'PLAYERS_INC';
 const PLAYERS_DEC = 'PLAYERS_DEC';
 
@@ -46,13 +43,9 @@ export const getGameYear = (gameYear) => ({
   gameYear
 });
 
-export const playFirstGame = () => ({
-  type: PLAY_FIRST_GAME
+export const playersInc = () => ({
+  type: PLAYERS_INC
 });
-
-export const playersInc = () => {
-  return { type: PLAYERS_INC };
-};
 
 export const playersDec = () => ({
   type: PLAYERS_DEC
@@ -75,6 +68,7 @@ export default function (state = initialState, action) {
         ...state,
         isCurrentGame: true,
         secondsRemaining: 30,
+        // isFirstGame: false,
         gameClock,
         gameType
       };
@@ -90,8 +84,6 @@ export default function (state = initialState, action) {
       return { ...state, secondsRemaining: state.secondsRemaining - 1 };
     case GET_GAME_YEAR:
       return { ...state, gameYear };
-    case PLAY_FIRST_GAME:
-      return { ...state, isFirstGame: false };
     case PLAYERS_INC:
       return { ...state, players: state.players + 1 };
     case PLAYERS_DEC:

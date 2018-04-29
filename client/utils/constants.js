@@ -1,7 +1,7 @@
 
-export const elections = [1976, 2016];
+const elections = [1976, 2016];
 
-export const colors = {
+const colors = {
   democrat: 'rgb(101, 188, 228)', // #65bce4
   republican: 'rgb(238, 104, 80)', // #ee6850
   deselected: 'rgb(235, 235, 235)',
@@ -12,9 +12,25 @@ export const colors = {
   strokeDisabled: 'rgb(200, 200, 200)'
 };
 
-export const mapWidth = 900;
-export const mapHeight = 500;
+const events = {
+  playersInc: 'players-inc',
+  playersDec: 'players-dec'
+};
+
+const mapWidth = 900;
+const mapHeight = 500;
 
 // for map display
-export const submitted = 'submitted';
-export const playing = 'playing';
+const submitted = 'submitted';
+const playing = 'playing';
+
+module.exports = {
+  elections,
+  colors,
+  events,
+  mapWidth,
+  mapHeight,
+  submitted,
+  playing
+};
+

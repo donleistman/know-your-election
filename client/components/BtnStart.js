@@ -4,14 +4,14 @@ import { Button } from 'semantic-ui-react';
 import { startGame } from '../utils/gameLogic';
 
 const BtnStart = (props) => {
-  let { isFirstGame, btnText } = props;
+  let { isFirstGame, btnText, gameType } = props;
 
-  if (!btnText) btnText = 'Start Game';
+  if (!btnText) btnText = 'placeholder text';
 
   return (
     <Button
       id={isFirstGame ? 'start-btn' : ' '}
-      onClick={startGame} >
+      onClick={() => startGame(gameType)} >
       {btnText}
     </Button>
   );

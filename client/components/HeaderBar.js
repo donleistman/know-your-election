@@ -4,7 +4,6 @@ import { Segment, Header } from 'semantic-ui-react';
 
 export const HeaderBar = (props) => {
   const { gameYear } = props;
-  console.log(gameYear);
 
   return (
     <Segment clearing id="header-container">
