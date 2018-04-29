@@ -1,7 +1,8 @@
 // CLIENT SOCKET
 
 import io from 'socket.io-client';
-import { store, playersInc, playersDec, updatePlayers } from './store';
+import { store, updatePlayers } from './store';
+import { createLocalGame } from './utils/gameLogic';
 
 // const { dispatch } = store;
 
@@ -10,17 +11,20 @@ const socket = io(window.location.origin);
 socket.on('connect', () => {
   console.log('Connected!');
 
-  // socket.on('players-inc', () => {
-  //   store.dispatch(playersInc());
-  // });
-
-  // socket.on(players-dec, () => {
-  //   store.dispatch(playersDec());
-  // });
-
   socket.on('update-players', (numPlayers) => {
-    console.log('IN UPDATE PLAYERS CLIENT SOCKET')
     store.dispatch(updatePlayers(numPlayers));
+  });
+
+  socket.on('send-game', serverGame => {
+    console.log('serverGame', serverGame);
+    // if there is NOT a current game
+    if (!serverGame.isCurrentGame) {
+      // create a new game here
+      createLocalGame('collab');
+    } else {
+      // if there is a current game on the server
+      // dispatch the entire server game to local state
+    }
   });
 });
 

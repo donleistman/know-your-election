@@ -2,21 +2,18 @@ import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
 
 import socket from '../socket';
-import { usStates } from '.';
+import { usStates, createGameClock } from '.';
 
 import {
   store,
   clearMap,
-  countdown,
+  // countdown,
   fetchAnswers,
   fetchCandidates,
-  getGameYear,
   getMapNodes,
   gameStart,
   gameEnd,
   playFirstGame,
-  playersInc,
-  playersDec,
   updateMessage,
   updateMap,
   updateMapDisplay
@@ -25,7 +22,6 @@ import {
 import {
   colors,
   elections,
-  events,
   mapHeight,
   mapWidth,
   playing,
@@ -33,6 +29,32 @@ import {
 } from './constants';
 
 const { dispatch, getState } = store;
+
+// ----HELPER FUNCTIONS -----------------------------------------------
+// ----create a local game --------------------------------------------
+export const createLocalGame = (gameType) => {
+  // create a game timer
+  const gameClock = createGameClock();
+  const secondsRemaining = 30;
+
+  // choose a random election
+  const gameYear = elections[Math.floor(Math.random() * elections.length)];
+
+  // create a fresh game with timer, type, and year on local state
+  dispatch(gameStart(gameClock, gameType, gameYear, secondsRemaining));
+  // grab candidates and answers from API
+  dispatch(fetchAnswers(gameYear));
+  dispatch(fetchCandidates(gameYear));
+
+  if (gameType === 'collab') {
+    // send an event to trigger game-start on the server
+    socket.emit('start-new-game', { gameType, gameYear, secondsRemaining });
+  }
+};
+
+
+// ---- GAME LOOP -----------------------------------------------------
+// --------------------------------------------------------------------
 
 // --------- DRAW GAME MAP --------------------------------------------
 export const drawMap = function () {
@@ -72,42 +94,25 @@ export const drawMap = function () {
 // --------- START GAME ----------------------------------------------
 export const startGame = (gameType) => {
 
+  // if playing online, broadcast joining game
+  if (gameType === 'collab' && getState().game.isFirstGame) {
+    socket.emit('players-inc');
+  }
+  // set isFirstGame to false
+  dispatch(playFirstGame());
+
   // clear out any previous game
   dispatch(clearMap());
   dispatch(updateMapDisplay(playing));
 
-  // create a game timer
-  const gameClock = setInterval(() => {
-    const sec = getState().game.secondsRemaining;
-    if (sec >= 0) {
-      dispatch(updateMessage(`Seconds Remaining: ${sec}`));
-      dispatch(countdown());
-    } else {
-      endGame();
-    }
-  }, 1000);
-
-  // create a fresh game on local state
-  dispatch(gameStart(gameClock, gameType));
-
-  // if playing online, broadcast joining game
-  console.log('outside inc player');
-  console.log('gameType', gameType);
-  console.log('getState().game.isFirstGame', getState().game.isFirstGame);
-  if (gameType === 'collab' && getState().game.isFirstGame) {
-    console.log('inside inc player');
-    socket.emit('players-inc');
-    // dispatch(playersInc());
+  if (gameType === 'collab') {
+    // FETCH GAME STATUS FROM SERVER
+    // Listen for response in socket.js
+    socket.emit('fetch-game');
+  } else if (gameType === 'solo') {
+    // CREATE A NEW LOCAL GAME
+    createLocalGame(gameType);
   }
-
-  // set isFirstGame to false
-  dispatch(playFirstGame());
-
-  // choose a random election, and grab data from API
-  const randomElectionYear = elections[Math.floor(Math.random() * elections.length)];
-  dispatch(getGameYear(randomElectionYear));
-  dispatch(fetchAnswers(randomElectionYear));
-  dispatch(fetchCandidates(randomElectionYear));
 
   // grab map nodes and change color to deselected
   const mapNodes = getState().mapNodes;
@@ -119,13 +124,6 @@ export const startGame = (gameType) => {
       else return colors.disabled;
     })
     .style('stroke', colors.stroke);
-};
-
-// --------- END GAME ----------------------------------------------
-export const endGame = () => {
-  clearInterval(getState().game.gameClock);
-  dispatch(gameEnd());
-  checkMap();
 };
 
 // ------ TOGGLE STATE ON CLICK -----------------------------------------
@@ -148,6 +146,13 @@ export const toggleState = function (data) {
     select(`#state${stateId}`)
       .style('fill', newColor);
   }
+};
+
+// --------- END GAME ----------------------------------------------
+export const endGame = () => {
+  clearInterval(getState().game.gameClock);
+  dispatch(gameEnd());
+  checkMap();
 };
 
 // -------- CHECK THE MAP ----------------------------------------------

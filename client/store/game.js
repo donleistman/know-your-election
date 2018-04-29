@@ -6,10 +6,12 @@
 const initialState = {
   isCurrentGame: false,
   secondsRemaining: 0,
-  isFirstGame: true,
   gameClock: null,
   gameYear: null,
   gameType: null,
+
+  // TODO -- move players to a separate reducer
+  isFirstGame: true,
   players: 0
 };
 
@@ -18,21 +20,24 @@ const initialState = {
  */
 const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
 const GAME_START = 'GAME_START';
+const GAME_JOIN = 'GAME_JOIN';
 const GAME_END = 'GAME_END';
-const GET_GAME_YEAR = 'GET_GAME_YEAR';
+
+// TODO -- move players to a separate reducer
 const PLAY_FIRST_GAME = 'PLAY_FIRST_GAME';
 const PLAYERS_INC = 'PLAYERS_INC';
-// const PLAYERS_DEC = 'PLAYERS_DEC';
 const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 
 /**
  * ACTION CREATORS
  */
 
-export const gameStart = (gameClock, gameType) => ({
+export const gameStart = (gameClock, gameType, gameYear, secondsRemaining) => ({
   type: GAME_START,
   gameClock,
-  gameType
+  gameType,
+  gameYear,
+  secondsRemaining
 });
 
 export const gameEnd = () => ({
@@ -43,11 +48,8 @@ export const countdown = () => ({
   type: COUNTDOWN_SECONDS
 });
 
-export const getGameYear = (gameYear) => ({
-  type: GET_GAME_YEAR,
-  gameYear
-});
 
+// TODO -- move players to a separate reducer
 export const playFirstGame = () => ({
   type: PLAY_FIRST_GAME
 });
@@ -55,10 +57,6 @@ export const playFirstGame = () => ({
 export const playersInc = () => ({
   type: PLAYERS_INC
 });
-
-// export const playersDec = () => ({
-//   type: PLAYERS_DEC
-// });
 
 export const updatePlayers = (players) => ({
   type: UPDATE_PLAYERS,
@@ -74,16 +72,19 @@ export const updatePlayers = (players) => ({
  * REDUCER
  */
 export default function (state = initialState, action) {
-  const { gameClock, gameYear, gameType, players } = action;
+  const {
+    gameClock, gameYear, gameType, players, secondsRemaining
+  } = action;
 
   switch (action.type) {
     case GAME_START:
       return {
         ...state,
         isCurrentGame: true,
-        secondsRemaining: 30,
+        secondsRemaining,
         gameClock,
-        gameType
+        gameType,
+        gameYear
       };
     case GAME_END:
       return {
@@ -95,14 +96,12 @@ export default function (state = initialState, action) {
       };
     case COUNTDOWN_SECONDS:
       return { ...state, secondsRemaining: state.secondsRemaining - 1 };
-    case GET_GAME_YEAR:
-      return { ...state, gameYear };
+
+    // TODO -- move players to a separate reducer
     case PLAY_FIRST_GAME:
       return { ...state, isFirstGame: false };
     case PLAYERS_INC:
       return { ...state, players: state.players + 1 };
-    // case PLAYERS_DEC:
-    //   return { ...state, players: state.players - 1 };
     case UPDATE_PLAYERS:
       return { ...state, players };
     default:

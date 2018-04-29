@@ -3,10 +3,11 @@
 const initialState = {
   isCurrentGame: false,
   secondsRemaining: 0,
-  // isFirstGame: true,
   gameClock: null,
   gameYear: null,
   gameType: null,
+
+  // TODO -- move players to a separate reducer
   players: 0
 };
 
@@ -16,7 +17,8 @@ const initialState = {
 const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
 const GAME_START = 'GAME_START';
 const GAME_END = 'GAME_END';
-const GET_GAME_YEAR = 'GET_GAME_YEAR';
+
+// TODO -- move players to a separate reducer
 const PLAYERS_INC = 'PLAYERS_INC';
 const PLAYERS_DEC = 'PLAYERS_DEC';
 
@@ -24,25 +26,23 @@ const PLAYERS_DEC = 'PLAYERS_DEC';
  * ACTION CREATORS
  */
 
-const gameStart = (gameClock, gameType) => ({
+const gameStartServer = (gameClock, gameType, gameYear, secondsRemaining) => ({
   type: GAME_START,
   gameClock,
-  gameType
+  gameType,
+  gameYear,
+  secondsRemaining
 });
 
 const gameEnd = () => ({
   type: GAME_END
 });
 
-const countdown = () => ({
+const countdownServer = () => ({
   type: COUNTDOWN_SECONDS
 });
 
-const getGameYear = (gameYear) => ({
-  type: GET_GAME_YEAR,
-  gameYear
-});
-
+// TODO -- move players to a separate reducer
 const playersInc = () => ({
   type: PLAYERS_INC
 });
@@ -60,18 +60,17 @@ const playersDec = () => ({
  * REDUCER
  */
 const reducer = function (state = initialState, action) {
-  const { gameClock, gameYear, gameType } = action;
+  const { gameClock, gameYear, gameType, secondsRemaining } = action;
 
   switch (action.type) {
-    // case GAME_START:
-    //   return {
-    //     ...state,
-    //     isCurrentGame: true,
-    //     secondsRemaining: 30,
-    //     // isFirstGame: false,
-    //     gameClock,
-    //     gameType
-    //   };
+    case GAME_START:
+      return Object.assign({}, state, {
+        isCurrentGame: true,
+        secondsRemaining,
+        gameClock,
+        gameType,
+        gameYear
+      });
     // case GAME_END:
     //   return {
     //     ...state,
@@ -82,8 +81,8 @@ const reducer = function (state = initialState, action) {
     //   };
     // case COUNTDOWN_SECONDS:
     //   return { ...state, secondsRemaining: state.secondsRemaining - 1 };
-    // case GET_GAME_YEAR:
-    //   return { ...state, gameYear };
+
+    // TODO -- move players to a separate reducer
     case PLAYERS_INC:
       return Object.assign({}, state, { players: state.players + 1 });
     case PLAYERS_DEC:
@@ -95,10 +94,9 @@ const reducer = function (state = initialState, action) {
 
 module.exports = {
   reducer,
-  gameStart,
+  gameStartServer,
   gameEnd,
-  countdown,
-  getGameYear,
+  countdownServer,
   playersInc,
   playersDec
 };
