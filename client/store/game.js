@@ -5,7 +5,8 @@ const initialState = {
   isCurrentGame: false,
   secondsRemaining: 0,
   gameClock: null,
-  isFirstGame: true
+  isFirstGame: true,
+  gameYear: null,
 };
 
 /**
@@ -14,6 +15,7 @@ const initialState = {
 const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
 const GAME_START = 'GAME_START';
 const GAME_END = 'GAME_END';
+const GET_GAME_YEAR = 'GET_GAME_YEAR';
 
 /**
  * ACTION CREATORS
@@ -32,6 +34,11 @@ export const countdown = () => ({
   type: COUNTDOWN_SECONDS
 });
 
+export const getGameYear = (gameYear) => ({
+  type: GET_GAME_YEAR,
+  gameYear
+});
+
 /**
  * THUNK CREATORS
  */
@@ -41,7 +48,7 @@ export const countdown = () => ({
  * REDUCER
  */
 export default function (state = initialState, action) {
-  const { gameClock } = action;
+  const { gameClock, gameYear } = action;
 
   switch (action.type) {
     case GAME_START:
@@ -56,6 +63,8 @@ export default function (state = initialState, action) {
       return { ...state, isCurrentGame: false };
     case COUNTDOWN_SECONDS:
       return { ...state, secondsRemaining: state.secondsRemaining - 1 };
+    case GET_GAME_YEAR:
+      return { ...state, gameYear };
     default:
       return state;
   }

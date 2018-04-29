@@ -1,8 +1,8 @@
 const csv = require('csvtojson');
-const csvFilePath = '/Users/Don/dev/fullstack/mapper/script/seed-data/2016.csv';
+const csvFilePath = '/Users/Don/dev/fullstack/mapper/script/seed-data/1976.csv';
 
 const fs = require('fs');
-let outputPath = '/Users/Don/dev/fullstack/mapper/script/seed-data/2016-test.json';
+let outputPath = '/Users/Don/dev/fullstack/mapper/script/seed-data/1976.json';
 
 csv({ delimiter: [','] })
   .fromFile(csvFilePath)

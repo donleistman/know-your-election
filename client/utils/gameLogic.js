@@ -2,14 +2,15 @@ import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
 import {
   store,
-  updateMessage,
-  updateMap,
-  getMapNodes,
-  gameStart,
-  gameEnd,
   countdown,
   fetchAnswers,
   fetchCandidates,
+  getGameYear,
+  getMapNodes,
+  gameStart,
+  gameEnd,
+  updateMessage,
+  updateMap,
   updateMapDisplay
 } from '../store';
 import { usStates } from '.';
@@ -20,6 +21,7 @@ import {
   deselectedColor,
   disabledColor,
   disabledStrokeColor,
+  elections,
   incorrectColor,
   mapHeight,
   mapWidth,
@@ -81,9 +83,11 @@ export const startGame = () => {
 
   dispatch(gameStart(gameClock));
 
-  const year = 2016; //TODO determine random year
-  dispatch(fetchAnswers(year));
-  dispatch(fetchCandidates(year));
+  const randomElectionYear = elections[Math.floor(Math.random() * elections.length)];
+
+  dispatch(getGameYear(randomElectionYear));
+  dispatch(fetchAnswers(randomElectionYear));
+  dispatch(fetchCandidates(randomElectionYear));
 
   mapNodes
     .style('fill', (d, i) => {

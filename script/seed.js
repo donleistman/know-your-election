@@ -1,22 +1,27 @@
 const db = require('../server/db');
 const { Candidate, State } = require('../server/db/models');
-const { candidates2016, states2016 } = require('./seed-data/2016.js');
+const { _1976, _2016 } = require('./seed-data');
 
+const elections = [_1976, _2016];
 
 async function seed() {
   await db.sync({ force: true });
   console.log('db synced!');
 
-  const candidates = await Promise.all(candidates2016.map(candidate =>
-    Candidate.create(candidate))
-  );
+  for (let i = 0; i < elections.length; i++) {
+    const electionYear = elections[i];
+    const candidates = await Promise.all(electionYear.candidates.map(candidate =>
+      Candidate.create(candidate))
+    );
 
-  const states = await Promise.all(states2016.map(state =>
-    State.create(state))
-  );
+    const states = await Promise.all(electionYear.states.map(state =>
+      State.create(state))
+    );
 
-  console.log(`seeded ${candidates.length} candidates`);
-  console.log(`seeded ${states.length} states`);
+    console.log(`For Election ${candidates[0].year}: `);
+    console.log(`seeded ${candidates.length} candidates`);
+    console.log(`seeded ${states.length} states`);
+  }
   console.log(`seeded successfully`);
 }
 
