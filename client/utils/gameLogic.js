@@ -97,7 +97,7 @@ export const startGame = (gameType) => {
   if (gameType === 'collab' && getState().game.isFirstGame) {
     console.log('inside inc player');
     socket.emit(events.playersInc);
-    dispatch(playersInc());
+    // dispatch(playersInc());
   }
 
   // set isFirstGame to false

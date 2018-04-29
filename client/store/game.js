@@ -1,6 +1,7 @@
-import socket from '../socket';
-
 // CLIENT STORE
+/* eslint-disable complexity*/
+
+// import socket from '../socket';
 
 const initialState = {
   isCurrentGame: false,
@@ -21,7 +22,8 @@ const GAME_END = 'GAME_END';
 const GET_GAME_YEAR = 'GET_GAME_YEAR';
 const PLAY_FIRST_GAME = 'PLAY_FIRST_GAME';
 const PLAYERS_INC = 'PLAYERS_INC';
-const PLAYERS_DEC = 'PLAYERS_DEC';
+// const PLAYERS_DEC = 'PLAYERS_DEC';
+const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 
 /**
  * ACTION CREATORS
@@ -50,12 +52,17 @@ export const playFirstGame = () => ({
   type: PLAY_FIRST_GAME
 });
 
-export const playersInc = () => {
-  return { type: PLAYERS_INC };
-};
+export const playersInc = () => ({
+  type: PLAYERS_INC
+});
 
-export const playersDec = () => ({
-  type: PLAYERS_DEC
+// export const playersDec = () => ({
+//   type: PLAYERS_DEC
+// });
+
+export const updatePlayers = (players) => ({
+  type: UPDATE_PLAYERS,
+  players
 });
 
 /**
@@ -67,7 +74,7 @@ export const playersDec = () => ({
  * REDUCER
  */
 export default function (state = initialState, action) {
-  const { gameClock, gameYear, gameType } = action;
+  const { gameClock, gameYear, gameType, players } = action;
 
   switch (action.type) {
     case GAME_START:
@@ -94,8 +101,10 @@ export default function (state = initialState, action) {
       return { ...state, isFirstGame: false };
     case PLAYERS_INC:
       return { ...state, players: state.players + 1 };
-    case PLAYERS_DEC:
-      return { ...state, players: state.players - 1 };
+    // case PLAYERS_DEC:
+    //   return { ...state, players: state.players - 1 };
+    case UPDATE_PLAYERS:
+      return { ...state, players };
     default:
       return state;
   }

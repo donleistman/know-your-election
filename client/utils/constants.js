@@ -14,7 +14,8 @@ const colors = {
 
 const events = {
   playersInc: 'players-inc',
-  playersDec: 'players-dec'
+  playersDec: 'players-dec',
+  updatePlayers: 'update-players'
 };
 
 const mapWidth = 900;

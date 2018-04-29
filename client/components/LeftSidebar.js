@@ -9,17 +9,18 @@ const LeftSidebar = (props) => {
 
   return (
     <Segment id="leftSidebar">
-      {!isFirstGame && <Candidates />}
-      {isCurrentGame && <Button onClick={endGame}>End Game</Button>}
+      {!isFirstGame &&
+        <Candidates />}
+      {isCurrentGame &&
+        <Button onClick={endGame}>End Game</Button>}
       {!isCurrentGame && !isFirstGame &&
         <BtnStart gameType={gameType} btnText="Try Again" />}
       <br /><br />
       {!isCurrentGame && !isFirstGame &&
         <BtnAnswers
-          btnText={'Show Correct Answers'}
-        />}
+          btnText={'Show Correct Answers'} />}
       {gameType === 'collab' &&
-        <h3>{`${players} other players online`}</h3>
+        <h3>{`${players} players online`}</h3>
       }
     </Segment>
   );
