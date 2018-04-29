@@ -108,16 +108,17 @@ export const toggleState = function (data) {
   const stateId = Number(data.id);
 
   if (isCurrentGame) {
-    if (!mapStatus[stateId] || mapStatus[stateId] === '-') {
+    if (!mapStatus[stateId] || mapStatus[stateId] === 'Republican') {
       dispatch(updateMap(stateId, 'Democrat'));
       newColor = partyColors['democrat'];
     } else if (mapStatus[stateId] === 'Democrat') {
       dispatch(updateMap(stateId, 'Republican'));
       newColor = partyColors['republican'];
-    } else if (mapStatus[stateId] === 'Republican') {
-      dispatch(updateMap(stateId, '-'));
-      newColor = deselectedColor;
     }
+    // else if (mapStatus[stateId] === 'Republican') {
+    //   dispatch(updateMap(stateId, '-'));
+    //   newColor = deselectedColor;
+    // }
     select(`#state${stateId}`)
       .style('fill', newColor);
   }

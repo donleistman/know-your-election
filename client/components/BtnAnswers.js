@@ -7,12 +7,18 @@ import { submitted, correct } from '../utils/properties';
 const BtnAnswers = (props) => {
   let { btnText, mapDisplay } = props;
 
-  if (!btnText) btnText = 'Show Answers';
+  btnText = mapDisplay === submitted
+    ? 'Show Correct Answers'
+    : 'Show Submitted Answers';
 
   return (
     <Button
       id="answers-btn"
-      onClick={mapDisplay === submitted ? showMapAnswers : showMapSubmittedAnswers} >
+      onClick={
+        mapDisplay === submitted
+          ? showMapAnswers
+          : showMapSubmittedAnswers
+      } >
       {btnText}
     </Button>
   );
