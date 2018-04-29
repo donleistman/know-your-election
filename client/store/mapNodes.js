@@ -4,15 +4,15 @@ import history from '../history';
 /**
  * ACTION TYPES
  */
-const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
-
+const GET_MAP_NODES = 'GET_MAP_NODES';
 
 /**
  * ACTION CREATORS
  */
-export const updateMessage = (message) => ({
-  type: UPDATE_MESSAGE,
-  message
+
+export const getMapNodes = (mapNodes) => ({
+  type: GET_MAP_NODES,
+  mapNodes
 });
 
 /**
@@ -23,10 +23,11 @@ export const updateMessage = (message) => ({
 /**
  * REDUCER
  */
-export default function (state = ' ', action) {
+export default function (state = {}, action) {
+
   switch (action.type) {
-    case UPDATE_MESSAGE:
-      return action.message;
+    case GET_MAP_NODES:
+      return action.mapNodes;
     default:
       return state;
   }

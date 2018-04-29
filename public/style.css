@@ -24,7 +24,36 @@ path:hover {
   opacity: 0.9;
 }
 
+#message-bar {
+  min-height: 40px;
+}
+
 #map-segment {
+  position: relative;
   width: 900px;
+  max-width: 900px;
   margin: 0 auto;
+  flex-grow: 0;
+}
+
+#game {
+  display: flex;
+}
+
+#start-btn {
+  position: absolute;
+  top: calc(50% - 2em);
+  right: calc(50% - 5em);
+  margin: 0;
+  padding: 1.5em;
+  height: 4em;
+  width: 10em;
+}
+
+#leftSidebar {
+  flex: 3;
+}
+
+#rightSidebar {
+  flex: 1;
 }

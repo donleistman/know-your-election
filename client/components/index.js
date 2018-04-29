@@ -11,4 +11,10 @@ export { default as HeaderBar } from './HeaderBar';
 export { default as MessageBar } from './MessageBar';
 
 export { default as Home } from './Home';
+export { default as Candidates } from './Candidates';
+export { default as LeftSidebar } from './LeftSidebar';
+export { default as RightSidebar } from './RightSidebar';
 export { default as Game } from './Game';
+
+export { default as StartButton } from './StartButton';
+

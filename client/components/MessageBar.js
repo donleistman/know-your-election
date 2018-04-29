@@ -5,7 +5,7 @@ import { Segment, Header } from 'semantic-ui-react';
 export const MessageBar = (props) => {
 
   return (
-    <Segment clearing>
+    <Segment clearing id="message-bar">
       <Header as="h4" align="center">{props.message}</Header>
     </Segment>
   );

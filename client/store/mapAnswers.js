@@ -4,7 +4,7 @@ import history from '../history';
 /**
  * ACTION TYPES
  */
-const GET_ANSWERS = 'GET_ANSWERS';
+const GET_MAP_ANSWERS = 'GET_MAP_ANSWERS';
 
 
 /**
@@ -12,7 +12,7 @@ const GET_ANSWERS = 'GET_ANSWERS';
  */
 
 export const getAnswers = (answers) => ({
-  type: GET_ANSWERS,
+  type: GET_MAP_ANSWERS,
   answers
 });
 
@@ -31,7 +31,7 @@ export const fetchAnswers = (year) =>
  */
 export default function (state = {}, action) {
   switch (action.type) {
-    case GET_ANSWERS:
+    case GET_MAP_ANSWERS:
       return action.answers;
     default:
       return state;

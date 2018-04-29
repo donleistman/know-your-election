@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Segment } from 'semantic-ui-react';
-import { updateMessage } from '../store';
-import { answers } from '../utils';
-import { startGame, checkMap, toggleState, drawMap } from '../utils/gameLogic';
+import { Segment } from 'semantic-ui-react';
+import { toggleState, drawMap } from '../utils/gameLogic';
 import { mapWidth, mapHeight } from '../utils/properties';
+import { LeftSidebar, RightSidebar, StartButton } from '.';
 
 class Game extends React.Component {
   constructor(props) {
@@ -18,30 +17,22 @@ class Game extends React.Component {
   }
 
   render() {
-    const { isCurrentGame, mapStatus, handleCheckMap } = this.props;
+    const { isCurrentGame, isFirstGame } = this.props;
 
     return (
-      <div>
-        {!isCurrentGame
-          ? <Button onClick={() => {
-            startGame(this.states);
-          }} >
-            Start Game
-            </Button>
-          : <Button
-            onClick={() => handleCheckMap(mapStatus, answers, '2008')}
-          >
-            Check Map
-            </Button>
-        }
+      <Segment.Group horizontal id="game">
+        <LeftSidebar />
         <Segment id="map-segment">
           <svg
+            id="map"
             ref={node => this.node = node}
             width={mapWidth}
             height={mapHeight}
           />
+          {!isCurrentGame && isFirstGame && <StartButton />}
         </Segment>
-      </div>
+        <RightSidebar />
+      </Segment.Group>
     );
   }
 }
@@ -52,13 +43,14 @@ class Game extends React.Component {
 const mapStateToProps = state => {
   return {
     mapStatus: state.mapStatus,
-    isCurrentGame: state.game.isCurrentGame
+    isCurrentGame: state.game.isCurrentGame,
+    isFirstGame: state.game.isFirstGame,
+    mapNodes: state.game.mapNodes
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleCheckMap: (mapStatus, answer, year) => dispatch(updateMessage(checkMap(mapStatus, answer, year)))
   };
 };
 

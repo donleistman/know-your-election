@@ -1,6 +1,16 @@
 import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
-import { store, updateMap, gameStart, gameEnd, fetchAnswers } from '../store';
+import {
+  store,
+  updateMessage,
+  updateMap,
+  getMapNodes,
+  gameStart,
+  gameEnd,
+  countdown,
+  fetchAnswers,
+  fetchCandidates
+} from '../store';
 import { usStates } from '.';
 
 import {
@@ -14,6 +24,7 @@ import {
 const { dispatch } = store;
 
 export const drawMap = function () {
+  console.log('drawing map');
   const node = this.node;
 
   const projection = geoAlbersUsa()
@@ -22,7 +33,7 @@ export const drawMap = function () {
   const path = geoPath()
     .projection(projection);
 
-  this.states = select(node)
+  const mapNodes = select(node)
     .selectAll('path')
     .data(usStates.features)
     .enter()
@@ -41,17 +52,31 @@ export const drawMap = function () {
       const stateExists = true;
       if (stateExists) this.toggleState(d, i);
     });
+
+  dispatch(getMapNodes(mapNodes));
 };
 
 
-export const startGame = (states) => {
-  store.dispatch(gameStart());
+export const startGame = () => {
+  console.log('game start!');
+  const mapNodes = store.getState().mapNodes;
+  const gameClock = setInterval(() => {
+    const sec = store.getState().game.secondsRemaining;
+    if (sec >= 0) {
+      dispatch(updateMessage(`Seconds Remaining: ${sec}`));
+      dispatch(countdown());
+    } else {
+      endGame();
+    }
+  }, 1000);
 
-  //TODO determine random year
-  const year = 2016;
-  store.dispatch(fetchAnswers(year));
+  dispatch(gameStart(gameClock));
 
-  states.style('fill', (d, i) => {
+  const year = 2016; //TODO determine random year
+  dispatch(fetchAnswers(year));
+  dispatch(fetchCandidates(year));
+
+  mapNodes.style('fill', (d, i) => {
     // add in condition here for whether a state was present
     // in a given year
     const stateExists = true;
@@ -59,14 +84,14 @@ export const startGame = (states) => {
     else return disabledColor;
   });
 
-  // should instead set an interval to update game counter
-  // then continually check state
-  // and end the game when the seconds remaining on the state reaches 0
-  // setTimeout(endGame, 3000);
+
+
 };
 
 export const endGame = () => {
-  store.dispatch(gameEnd());
+  clearInterval(store.getState().game.gameClock);
+  dispatch(gameEnd());
+  checkMap();
   console.log('game over!');
 };
 
@@ -95,13 +120,18 @@ export const toggleState = function (d, i) {
 
 
 export const checkMap = () => {
-  const { answers, mapStatus } = store.getState();
+  const { mapAnswers, mapStatus } = store.getState();
 
   let numStatesCorrect = 0;
   Object.keys(mapStatus).forEach(stateId => {
-    if (answers[stateId].winner === mapStatus[stateId]) {
+    if (mapAnswers[stateId].winner === mapStatus[stateId]) {
       numStatesCorrect++;
     }
   });
-  return `You got ${numStatesCorrect} / 51 states correct!`;
+  dispatch(updateMessage(`You got ${numStatesCorrect} / 51 states correct!`));
+
+  // TODO Change map color to reflect correct answers
+  const mapNodes = store.getState().mapNodes;
+  mapNodes.style('fill', disabledColor);
+
 };
