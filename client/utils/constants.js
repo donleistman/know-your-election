@@ -2,8 +2,8 @@
 // export const repubColor = 'rgb(212, 47, 47)';
 
 export const partyColors = {
-  democrat: 'rgb(101, 188, 228)',
-  republican: 'rgb(238, 104, 80)'
+  democrat: 'rgb(101, 188, 228)', // #65bce4
+  republican: 'rgb(238, 104, 80)' // #ee6850
 };
 
 export const strokeColor = 'rgb(78, 78, 78)';
