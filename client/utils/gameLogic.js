@@ -18,7 +18,9 @@ import {
   repubColor,
   deselectedColor,
   mapWidth, mapHeight,
-  disabledColor
+  disabledColor,
+  correctColor,
+  incorrectColor
 } from './properties';
 
 const { dispatch } = store;
@@ -39,18 +41,19 @@ export const drawMap = function () {
     .enter()
     .append('path')
     .attr('d', path)
-    .attr('id', d => {
-      return 'state' + d.id;
+    .attr('id', data => {
+      const stateId = Number(data.id);
+      return 'state' + stateId;
     })
-    .style('fill', (d, i) => {
+    .style('fill', () => {
       // return `rgb(${i * 100 % 255}, 255, 255)`;
       return disabledColor;
     })
-    .on('click', (d, i) => {
+    .on('click', data => {
       // add in condition here for whether a state was present
       // in a given year
       const stateExists = true;
-      if (stateExists) this.toggleState(d, i);
+      if (stateExists) this.toggleState(data);
     });
 
   dispatch(getMapNodes(mapNodes));
@@ -95,12 +98,12 @@ export const endGame = () => {
   console.log('game over!');
 };
 
-export const toggleState = function (d, i) {
+export const toggleState = function (data) {
   const isCurrentGame = store.getState().game.isCurrentGame;
   // update map state
   let newColor;
   const mapStatus = this.props.mapStatus;
-  const stateId = Number(d.id);
+  const stateId = Number(data.id);
 
   if (isCurrentGame) {
     if (!mapStatus[stateId] || mapStatus[stateId] === '-') {
@@ -113,25 +116,29 @@ export const toggleState = function (d, i) {
       dispatch(updateMap(stateId, '-'));
       newColor = deselectedColor;
     }
-    select(`#state${d.id}`)
+    select(`#state${stateId}`)
       .style('fill', newColor);
   }
 };
 
 
 export const checkMap = () => {
-  const { mapAnswers, mapStatus } = store.getState();
+  const { mapAnswers, mapStatus, mapNodes } = store.getState();
 
   let numStatesCorrect = 0;
-  Object.keys(mapStatus).forEach(stateId => {
+  Object.keys(mapAnswers).forEach(stateId => {
     if (mapAnswers[stateId].winner === mapStatus[stateId]) {
       numStatesCorrect++;
+      select(`#state${stateId}`)
+        .style('fill', correctColor);
+    } else {
+      select(`#state${stateId}`)
+        .style('fill', incorrectColor);
     }
   });
   dispatch(updateMessage(`You got ${numStatesCorrect} / 51 states correct!`));
 
   // TODO Change map color to reflect correct answers
-  const mapNodes = store.getState().mapNodes;
-  mapNodes.style('fill', disabledColor);
+  // mapNodes.style('fill', disabledColor);
 
 };
