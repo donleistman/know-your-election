@@ -15,15 +15,18 @@ import {
 import { usStates } from '.';
 
 import {
-  partyColors,
-  deselectedColor,
-  mapWidth, mapHeight,
-  disabledColor,
+  correct,
   correctColor,
+  deselectedColor,
+  disabledColor,
+  disabledStrokeColor,
   incorrectColor,
-  submitted,
-  correct
-} from './properties';
+  mapHeight,
+  mapWidth,
+  partyColors,
+  strokeColor,
+  submitted
+} from './constants';
 
 const { dispatch } = store;
 
@@ -47,6 +50,7 @@ export const drawMap = function () {
       const stateId = Number(data.id);
       return 'state' + stateId;
     })
+    .style('stroke', disabledStrokeColor)
     .style('fill', () => {
       // return `rgb(${i * 100 % 255}, 255, 255)`;
       return disabledColor;
@@ -81,16 +85,15 @@ export const startGame = () => {
   dispatch(fetchAnswers(year));
   dispatch(fetchCandidates(year));
 
-  mapNodes.style('fill', (d, i) => {
-    // add in condition here for whether a state was present
-    // in a given year
-    const stateExists = true;
-    if (stateExists) return deselectedColor;
-    else return disabledColor;
-  });
-
-
-
+  mapNodes
+    .style('fill', (d, i) => {
+      // add in condition here for whether a state was present
+      // in a given year
+      const stateExists = true;
+      if (stateExists) return deselectedColor;
+      else return disabledColor;
+    })
+    .style('stroke', strokeColor);
 };
 
 export const endGame = () => {
@@ -137,7 +140,7 @@ export const checkMap = () => {
 
   showMapSubmittedAnswers();
 
-  dispatch(updateMessage(`You got ${numStatesCorrect} / 51 states correct!`));
+  dispatch(updateMessage(`You got ${numStatesCorrect} / 50 states correct!`));
 };
 
 

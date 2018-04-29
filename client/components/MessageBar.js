@@ -6,7 +6,7 @@ export const MessageBar = (props) => {
 
   return (
     <Segment clearing id="message-bar">
-      <Header as="h4" align="center">{props.message}</Header>
+      <h3 id="message">{props.message}</h3>
     </Segment>
   );
 };

@@ -5,9 +5,9 @@ import { Segment, Header } from 'semantic-ui-react';
 export const HeaderBar = (props) => {
 
   return (
-    <Segment clearing>
-      <Header as="h2" align="center">Welcome!</Header>
-      <Header as="h3" align="center">Guess the electoral map for 2008</Header>
+    <Segment clearing id="header-container">
+      <h1 id="banner">Fill in the Map!</h1>
+      <h2 id="sub-banner">Guess the electoral map for 2008</h2>
     </Segment>
   );
 };

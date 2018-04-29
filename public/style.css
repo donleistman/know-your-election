@@ -1,5 +1,11 @@
 body {
   font-family: sans-serif;
+  background-color: rgb(235, 235, 235);
+  color: rgb(55, 55, 55) !important;
+}
+
+button {
+  border: 1px solid rgb(205, 205, 205) !important;
 }
 
 a {
@@ -24,14 +30,42 @@ path:hover {
   opacity: 0.9;
 }
 
-#message-bar {
-  min-height: 40px;
+#header-container {
+  width: 60%;
+  margin: 0 auto;
 }
 
-#map-segment {
+#banner {
+  font-family: 'Bungee Shade', cursive;
+  text-align: center;
+  font-size: 2.8em;
+}
+
+#sub-banner {
+  margin: 0;
+  font-family: 'Laila', cursive;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+#message-bar {
+  min-height: 55px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+#message {
+  font-family: 'Laila', cursive;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+#map-container {
+  background-color: rgb(250, 250, 250);
   position: relative;
   width: 900px;
   max-width: 900px;
+  min-width: 900px;
   margin: 0 auto;
   flex-grow: 0;
 }
@@ -50,21 +84,32 @@ path:hover {
   width: 10em;
 }
 
+#leftSidebar, #rightSidebar {
+  background-color: rgb(235, 235, 235);
+}
+
 #leftSidebar {
   flex: 3;
+  min-width: 180px;
+  padding-left: 20px;
 }
 
 #rightSidebar {
   flex: 1;
 }
 
+
+#candidates {
+  min-width: 150px;
+}
+
 .republican {
-  background-color: rgb(212, 47, 47) !important;
+  background-color: rgb(238, 104, 80) !important;
   color: white;
 }
 
 .democrat {
-  background-color: rgb(27, 93, 216) !important;
+  background-color: rgb(101, 188, 228) !important;
   color: white;
 }
 
@@ -72,5 +117,21 @@ path:hover {
   width: 100px;
   height: 35px;
   text-align: center;
-  padding: 5px !important;
+  padding: 8px 5px !important;
+  font-weight: bold;
+}
+
+/* these classes arent used -- only for vscode color picker */
+.correct {
+  background-color: rgb(117, 245, 112);
+}
+
+.incorrect {
+  background-color: rgb(179, 129, 129);
+}
+
+.candidate-name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 20px;
 }

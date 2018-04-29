@@ -15,7 +15,7 @@ const Candidates = (props) => {
           >
             {candidate.party}
           </Segment>
-          <Container>{candidate.name}</Container>
+          <div className="candidate-name">{candidate.name}</div>
           {(index !== candidates.length - 1) && <Divider />}
         </Container>
       ))}

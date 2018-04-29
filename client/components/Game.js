@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Segment } from 'semantic-ui-react';
 import { toggleState, drawMap } from '../utils/gameLogic';
-import { mapWidth, mapHeight } from '../utils/properties';
+import { mapWidth, mapHeight } from '../utils/constants';
 import { LeftSidebar, RightSidebar, BtnStart } from '.';
 
 class Game extends React.Component {
@@ -22,7 +22,7 @@ class Game extends React.Component {
     return (
       <Segment.Group horizontal id="game">
         <LeftSidebar />
-        <Segment id="map-segment">
+        <Segment id="map-container">
           <svg
             id="map"
             ref={node => this.node = node}
