@@ -57,3 +57,20 @@ path:hover {
 #rightSidebar {
   flex: 1;
 }
+
+.republican {
+  background-color: rgb(212, 47, 47) !important;
+  color: white;
+}
+
+.democrat {
+  background-color: rgb(27, 93, 216) !important;
+  color: white;
+}
+
+.party {
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  padding: 5px !important;
+}

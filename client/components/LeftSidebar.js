@@ -12,7 +12,7 @@ const LeftSidebar = (props) => {
       {isCurrentGame && <Button onClick={endGame}>End Game</Button>}
       {!isCurrentGame && !isFirstGame &&
         <StartButton btnText="Try Again" />}
-      {isCurrentGame && <Candidates />}
+      {!isFirstGame && <Candidates />}
     </Segment>
   );
 };
