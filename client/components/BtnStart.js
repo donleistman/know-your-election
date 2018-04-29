@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import { startGame } from '../utils/gameLogic';
 
-const StartButton = (props) => {
+const BtnStart = (props) => {
   let { isFirstGame, btnText } = props;
 
   if (!btnText) btnText = 'Start Game';
@@ -33,5 +33,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartButton);
+export default connect(mapStateToProps, mapDispatchToProps)(BtnStart);
 

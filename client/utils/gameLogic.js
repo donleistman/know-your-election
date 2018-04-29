@@ -9,18 +9,20 @@ import {
   gameEnd,
   countdown,
   fetchAnswers,
-  fetchCandidates
+  fetchCandidates,
+  updateMapDisplay
 } from '../store';
 import { usStates } from '.';
 
 import {
-  demColor,
-  repubColor,
+  partyColors,
   deselectedColor,
   mapWidth, mapHeight,
   disabledColor,
   correctColor,
-  incorrectColor
+  incorrectColor,
+  submitted,
+  correct
 } from './properties';
 
 const { dispatch } = store;
@@ -108,10 +110,10 @@ export const toggleState = function (data) {
   if (isCurrentGame) {
     if (!mapStatus[stateId] || mapStatus[stateId] === '-') {
       dispatch(updateMap(stateId, 'Democrat'));
-      newColor = demColor;
+      newColor = partyColors['democrat'];
     } else if (mapStatus[stateId] === 'Democrat') {
       dispatch(updateMap(stateId, 'Republican'));
-      newColor = repubColor;
+      newColor = partyColors['republican'];
     } else if (mapStatus[stateId] === 'Republican') {
       dispatch(updateMap(stateId, '-'));
       newColor = deselectedColor;
@@ -123,12 +125,26 @@ export const toggleState = function (data) {
 
 
 export const checkMap = () => {
-  const { mapAnswers, mapStatus, mapNodes } = store.getState();
+  const { mapAnswers, mapStatus } = store.getState();
 
   let numStatesCorrect = 0;
   Object.keys(mapAnswers).forEach(stateId => {
     if (mapAnswers[stateId].winner === mapStatus[stateId]) {
       numStatesCorrect++;
+    }
+  });
+
+  showMapSubmittedAnswers();
+
+  dispatch(updateMessage(`You got ${numStatesCorrect} / 51 states correct!`));
+};
+
+
+export const showMapSubmittedAnswers = () => {
+  const { mapAnswers, mapStatus } = store.getState();
+
+  Object.keys(mapAnswers).forEach(stateId => {
+    if (mapAnswers[stateId].winner === mapStatus[stateId]) {
       select(`#state${stateId}`)
         .style('fill', correctColor);
     } else {
@@ -136,9 +152,17 @@ export const checkMap = () => {
         .style('fill', incorrectColor);
     }
   });
-  dispatch(updateMessage(`You got ${numStatesCorrect} / 51 states correct!`));
 
-  // TODO Change map color to reflect correct answers
-  // mapNodes.style('fill', disabledColor);
+  dispatch(updateMapDisplay(submitted));
+};
 
+export const showMapAnswers = () => {
+  const { mapAnswers } = store.getState();
+
+  Object.keys(mapAnswers).forEach(stateId => {
+    const state = mapAnswers[stateId];
+    select(`#state${stateId}`)
+      .style('fill', partyColors[state.winner.toLowerCase()]);
+  });
+  dispatch(updateMapDisplay(correct));
 };

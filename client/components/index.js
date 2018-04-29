@@ -16,5 +16,6 @@ export { default as LeftSidebar } from './LeftSidebar';
 export { default as RightSidebar } from './RightSidebar';
 export { default as Game } from './Game';
 
-export { default as StartButton } from './StartButton';
+export { default as BtnStart } from './BtnStart';
+export { default as BtnAnswers } from './BtnAnswers';
 

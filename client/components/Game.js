@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Segment } from 'semantic-ui-react';
 import { toggleState, drawMap } from '../utils/gameLogic';
 import { mapWidth, mapHeight } from '../utils/properties';
-import { LeftSidebar, RightSidebar, StartButton } from '.';
+import { LeftSidebar, RightSidebar, BtnStart } from '.';
 
 class Game extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Game extends React.Component {
             width={mapWidth}
             height={mapHeight}
           />
-          {!isCurrentGame && isFirstGame && <StartButton />}
+          {!isCurrentGame && isFirstGame && <BtnStart />}
         </Segment>
         <RightSidebar />
       </Segment.Group>

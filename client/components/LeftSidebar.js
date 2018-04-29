@@ -2,17 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Segment } from 'semantic-ui-react';
 import { endGame } from '../utils/gameLogic';
-import { StartButton, Candidates } from '.';
+import { BtnAnswers, BtnStart, Candidates } from '.';
 
 const LeftSidebar = (props) => {
   const { isCurrentGame, isFirstGame } = props;
 
   return (
     <Segment id="leftSidebar">
+      {!isFirstGame && <Candidates />}
       {isCurrentGame && <Button onClick={endGame}>End Game</Button>}
       {!isCurrentGame && !isFirstGame &&
-        <StartButton btnText="Try Again" />}
-      {!isFirstGame && <Candidates />}
+        <BtnStart btnText="Try Again" />}
+      <br /><br />
+      {!isCurrentGame && !isFirstGame &&
+        <BtnAnswers
+          btnText={'Show Correct Answers'}
+        />}
     </Segment>
   );
 };
