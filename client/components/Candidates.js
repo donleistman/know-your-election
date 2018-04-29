@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Divider, Segment } from 'semantic-ui-react';
-import { colors, submitted, playing } from '../utils/constants';
-// import { getCandidates } from '../store';
+import { colors, playing } from '../utils/constants';
 
 
 const Candidates = (props) => {

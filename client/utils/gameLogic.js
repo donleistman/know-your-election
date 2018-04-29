@@ -20,16 +20,10 @@ import {
 
 import {
   colors,
-  correctColor,
-  deselectedColor,
-  disabledColor,
-  disabledStrokeColor,
   elections,
-  incorrectColor,
   mapHeight,
   mapWidth,
   playing,
-  strokeColor,
   submitted
 } from './constants';
 
@@ -55,10 +49,10 @@ export const drawMap = function () {
       const stateId = Number(data.id);
       return 'state' + stateId;
     })
-    .style('stroke', disabledStrokeColor)
+    .style('stroke', colors.strokeDisabled)
     .style('fill', () => {
       // return `rgb(${i * 100 % 255}, 255, 255)`;
-      return disabledColor;
+      return colors.disabled;
     })
     .on('click', data => {
       // add in condition here for whether a state was present
@@ -100,10 +94,10 @@ export const startGame = () => {
       // add in condition here for whether a state was present
       // in a given year
       const stateExists = true;
-      if (stateExists) return deselectedColor;
-      else return disabledColor;
+      if (stateExists) return colors.deselected;
+      else return colors.disabled;
     })
-    .style('stroke', strokeColor);
+    .style('stroke', colors.stroke);
 };
 
 export const endGame = () => {
@@ -130,7 +124,7 @@ export const toggleState = function (data) {
     }
     // else if (mapStatus[stateId] === 'Republican') {
     //   dispatch(updateMap(stateId, '-'));
-    //   newColor = deselectedColor;
+    //   newColor = colors.deselected;
     // }
     select(`#state${stateId}`)
       .style('fill', newColor);
@@ -160,10 +154,10 @@ export const showMapSubmittedAnswers = () => {
   Object.keys(mapAnswers).forEach(stateId => {
     if (mapAnswers[stateId].winner === mapStatus[stateId]) {
       select(`#state${stateId}`)
-        .style('fill', correctColor);
+        .style('fill', colors.correct);
     } else {
       select(`#state${stateId}`)
-        .style('fill', incorrectColor);
+        .style('fill', colors.incorrect);
     }
   });
 
