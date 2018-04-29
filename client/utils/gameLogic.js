@@ -1,7 +1,11 @@
 import { select } from 'd3-selection';
 import { geoPath, geoAlbersUsa } from 'd3-geo';
+
+import { usStates } from '.';
+
 import {
   store,
+  clearMap,
   countdown,
   fetchAnswers,
   fetchCandidates,
@@ -13,10 +17,9 @@ import {
   updateMap,
   updateMapDisplay
 } from '../store';
-import { usStates } from '.';
 
 import {
-  correct,
+  colors,
   correctColor,
   deselectedColor,
   disabledColor,
@@ -25,12 +28,12 @@ import {
   incorrectColor,
   mapHeight,
   mapWidth,
-  partyColors,
+  playing,
   strokeColor,
   submitted
 } from './constants';
 
-const { dispatch } = store;
+const { dispatch, getState } = store;
 
 export const drawMap = function () {
   console.log('drawing map');
@@ -70,9 +73,12 @@ export const drawMap = function () {
 
 export const startGame = () => {
   console.log('game start!');
-  const mapNodes = store.getState().mapNodes;
+  dispatch(clearMap());
+  dispatch(updateMapDisplay(playing));
+
+  const mapNodes = getState().mapNodes;
   const gameClock = setInterval(() => {
-    const sec = store.getState().game.secondsRemaining;
+    const sec = getState().game.secondsRemaining;
     if (sec >= 0) {
       dispatch(updateMessage(`Seconds Remaining: ${sec}`));
       dispatch(countdown());
@@ -101,14 +107,14 @@ export const startGame = () => {
 };
 
 export const endGame = () => {
-  clearInterval(store.getState().game.gameClock);
+  clearInterval(getState().game.gameClock);
   dispatch(gameEnd());
   checkMap();
   console.log('game over!');
 };
 
 export const toggleState = function (data) {
-  const isCurrentGame = store.getState().game.isCurrentGame;
+  const isCurrentGame = getState().game.isCurrentGame;
   // update map state
   let newColor;
   const mapStatus = this.props.mapStatus;
@@ -117,10 +123,10 @@ export const toggleState = function (data) {
   if (isCurrentGame) {
     if (!mapStatus[stateId] || mapStatus[stateId] === 'Republican') {
       dispatch(updateMap(stateId, 'Democrat'));
-      newColor = partyColors['democrat'];
+      newColor = colors['democrat'];
     } else if (mapStatus[stateId] === 'Democrat') {
       dispatch(updateMap(stateId, 'Republican'));
-      newColor = partyColors['republican'];
+      newColor = colors['republican'];
     }
     // else if (mapStatus[stateId] === 'Republican') {
     //   dispatch(updateMap(stateId, '-'));
@@ -133,7 +139,7 @@ export const toggleState = function (data) {
 
 
 export const checkMap = () => {
-  const { mapAnswers, mapStatus } = store.getState();
+  const { mapAnswers, mapStatus } = getState();
 
   let numStatesCorrect = 0;
   Object.keys(mapAnswers).forEach(stateId => {
@@ -149,7 +155,7 @@ export const checkMap = () => {
 
 
 export const showMapSubmittedAnswers = () => {
-  const { mapAnswers, mapStatus } = store.getState();
+  const { mapAnswers, mapStatus } = getState();
 
   Object.keys(mapAnswers).forEach(stateId => {
     if (mapAnswers[stateId].winner === mapStatus[stateId]) {
@@ -165,12 +171,12 @@ export const showMapSubmittedAnswers = () => {
 };
 
 export const showMapAnswers = () => {
-  const { mapAnswers } = store.getState();
+  const { mapAnswers } = getState();
 
   Object.keys(mapAnswers).forEach(stateId => {
     const state = mapAnswers[stateId];
     select(`#state${stateId}`)
-      .style('fill', partyColors[state.winner.toLowerCase()]);
+      .style('fill', colors[state.winner.toLowerCase()]);
   });
-  dispatch(updateMapDisplay(correct));
+  dispatch(updateMapDisplay(playing));
 };

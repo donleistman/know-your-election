@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import { showMapAnswers, showMapSubmittedAnswers } from '../utils/gameLogic';
-import { submitted, correct } from '../utils/constants';
+import { submitted } from '../utils/constants';
 
 const BtnAnswers = (props) => {
   let { btnText, mapDisplay } = props;

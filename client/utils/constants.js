@@ -3,9 +3,11 @@
 
 export const elections = [1976, 2016];
 
-export const partyColors = {
+export const colors = {
   democrat: 'rgb(101, 188, 228)', // #65bce4
-  republican: 'rgb(238, 104, 80)' // #ee6850
+  republican: 'rgb(238, 104, 80)', // #ee6850
+  correct: 'rgb(117, 245, 112)',
+  incorrect: 'rgb(179, 129, 129)'
 };
 
 export const strokeColor = 'rgb(78, 78, 78)';
@@ -20,4 +22,4 @@ export const mapHeight = 500;
 
 // for map display
 export const submitted = 'submitted';
-export const correct = 'correct';
+export const playing = 'playing';

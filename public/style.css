@@ -91,6 +91,7 @@ path:hover {
 
 #leftSidebar {
   flex: 3;
+  max-width: calc((100vw - 900px) / 2);
   min-width: 180px;
   padding-left: 20px;
 }
@@ -104,22 +105,13 @@ path:hover {
   min-width: 150px;
 }
 
-.republican {
-  background-color: rgb(238, 104, 80) !important;
-  color: white;
-}
-
-.democrat {
-  background-color: rgb(101, 188, 228) !important;
-  color: white;
-}
-
-.party {
+.party-label {
   width: 100px;
   height: 35px;
   text-align: center;
   padding: 8px 5px !important;
   font-weight: bold;
+  color: white;
 }
 
 /* these classes arent used -- only for vscode color picker */

@@ -1,22 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Divider, Segment } from 'semantic-ui-react';
+import { colors, submitted, playing } from '../utils/constants';
+// import { getCandidates } from '../store';
 
 
 const Candidates = (props) => {
-  const { candidates } = props;
+  const { candidates, mapDisplay } = props;
+
+  const showCandidates = mapDisplay === playing;
+
+  const labels = [
+    { id: 1, name: 'Correct!', party: 'Correct' },
+    { id: 2, name: 'Wrong!', party: 'Incorrect' },
+  ];
+
+  let legend;
+
+  if (showCandidates) legend = candidates;
+  else legend = labels;
 
   return (
     <Segment id="candidates">
-      {candidates && candidates.map((candidate, index) => (
+      {legend && legend.map((candidate, index) => (
         <Container key={candidate.id}>
           <Segment
-            className={candidate.party.toLowerCase() + ' party'}
+            className={'party-label'}
+            style={{ backgroundColor: colors[candidate.party.toLowerCase()] }}
           >
-            {candidate.party}
+            {showCandidates && candidate.party}
           </Segment>
           <div className="candidate-name">{candidate.name}</div>
-          {(index !== candidates.length - 1) && <Divider />}
+          {(index !== legend.length - 1) && <Divider />}
         </Container>
       ))}
     </Segment>
@@ -28,7 +43,8 @@ const Candidates = (props) => {
  */
 const mapStateToProps = state => {
   return {
-    candidates: state.candidates
+    candidates: state.candidates,
+    mapDisplay: state.mapDisplay
   };
 };
 
