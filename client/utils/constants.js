@@ -12,11 +12,6 @@ const colors = {
   strokeDisabled: 'rgb(200, 200, 200)'
 };
 
-const events = {
-  playersInc: 'players-inc',
-  playersDec: 'players-dec',
-  updatePlayers: 'update-players'
-};
 
 const mapWidth = 900;
 const mapHeight = 500;
@@ -28,7 +23,6 @@ const playing = 'playing';
 module.exports = {
   elections,
   colors,
-  events,
   mapWidth,
   mapHeight,
   submitted,
