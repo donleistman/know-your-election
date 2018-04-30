@@ -4,10 +4,10 @@ import io from 'socket.io-client';
 import { select } from 'd3-selection';
 
 import { store, updatePlayers, updateMap } from './store';
-import { createLocalGame } from './utils/gameLogic';
+import { createLocalGame, endGame } from './utils/gameLogic';
 import { colors } from './utils/constants';
 
-const { dispatch } = store;
+const { dispatch, getState } = store;
 
 const socket = io(window.location.origin);
 
@@ -19,16 +19,19 @@ socket.on('connect', () => {
   });
 
   socket.on('send-game', serverGame => {
-    console.log('serverGame', serverGame);
     // if there is NOT a current game
     if (!serverGame.isCurrentGame) {
       // create a new game here
       createLocalGame('collab');
     } else {
-      console.log('there is a current game already!');
-      console.log('here is what it looks like', serverGame);
       const { gameYear, secondsRemaining } = serverGame;
       createLocalGame('collab', gameYear, secondsRemaining);
+    }
+  });
+
+  socket.on('new-game', () => {
+    if (!getState().game.isCurrentGame) {
+      socket.emit('fetch-game');
     }
   });
 
@@ -45,6 +48,10 @@ socket.on('connect', () => {
 
     select(`#state${stateId}`)
       .style('fill', newColor);
+  });
+
+  socket.on('end-game', () => {
+    endGame();
   });
 
 });

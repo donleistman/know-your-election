@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Segment } from 'semantic-ui-react';
 import { endGame } from '../utils/gameLogic';
+import socket from '../socket';
+
 import { BtnAnswers, BtnStart, Candidates } from '.';
 
 const LeftSidebar = (props) => {
@@ -12,7 +14,10 @@ const LeftSidebar = (props) => {
       {!isFirstGame &&
         <Candidates />}
       {isCurrentGame &&
-        <Button onClick={endGame}>End Game</Button>}
+        <Button onClick={() => {
+          socket.emit('end-game');
+          endGame();
+        }}>End Game</Button>}
       {!isCurrentGame && !isFirstGame &&
         <BtnStart gameType={gameType} btnText="Try Again" />}
       <br /><br />

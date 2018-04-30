@@ -7,6 +7,7 @@ const BtnStart = (props) => {
   let { isFirstGame, btnText, gameType } = props;
 
   if (!btnText) btnText = 'placeholder text';
+  console.log('gameType in BtnStart props', gameType);
 
   return (
     <Button
@@ -24,7 +25,7 @@ const mapStateToProps = state => {
   return {
     mapStatus: state.mapStatus,
     isCurrentGame: state.game.isCurrentGame,
-    isFirstGame: state.game.isFirstGame
+    isFirstGame: state.game.isFirstGame,
   };
 };
 

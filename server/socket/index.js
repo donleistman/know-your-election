@@ -2,7 +2,7 @@
 
 const store = require('../store');
 const {
-  playersInc, playersDec, countdownServer, gameStartServer
+  playersInc, playersDec, countdownServer, gameStartServer, gameEndServer
 } = require('../store/game');
 
 const { dispatch, getState } = store;
@@ -17,10 +17,8 @@ module.exports = (io) => {
     });
 
     socket.on('fetch-game', () => {
-      console.log('fetching game!');
       const serverGame = getState().game;
       const { gameYear, gameType, secondsRemaining, isCurrentGame } = serverGame;
-      console.log('serverGame on server', serverGame);
       socket.emit('send-game', { gameYear, gameType, secondsRemaining, isCurrentGame });
     });
 
@@ -33,10 +31,21 @@ module.exports = (io) => {
 
       // create a fresh game with timer, type, and year on local state
       dispatch(gameStartServer(gameClock, gameType, gameYear, secondsRemaining));
+
+      // emit event to cause clients to pull down new game
+      socket.broadcast.emit('new-game');
     });
 
     socket.on('toggle-state', ({ stateId, party }) => {
       socket.broadcast.emit('toggle-state', { stateId, party });
+    });
+
+    socket.on('end-game', () => {
+      // tell clients to all end their games
+      socket.broadcast.emit('end-game');
+
+      // clear the game state
+      dispatch(gameEndServer());
     });
 
     socket.on('disconnect', () => {
@@ -44,23 +53,20 @@ module.exports = (io) => {
       dispatch(playersDec());
       io.emit('update-players', getState().game.players);
     });
+
+    // ----HELPER FUNCTIONS -----------------------------------------------
+    const createServerGameClock = () => {
+      return setInterval(() => {
+        const sec = getState().game.secondsRemaining;
+        if (sec >= 0) {
+          dispatch(countdownServer());
+        } else {
+          // io.emit('end-game');
+        }
+      }, 1000);
+    };
   });
 };
 
 
-// ----HELPER FUNCTIONS -----------------------------------------------
-const createServerGameClock = () => {
-  return setInterval(() => {
-    const sec = getState().game.secondsRemaining;
-    if (sec >= 0) {
-      dispatch(countdownServer());
-    } else {
-      // no need to call endGame just yet
-      // need to think about what this looks like on server
-      // emits an event and clears gameState?
-      // immediately starts a new game?
 
-      // endGame();
-    }
-  }, 1000);
-};

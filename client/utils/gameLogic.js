@@ -54,6 +54,21 @@ export const createLocalGame = (gameType, gameYear, secondsRemaining) => {
     // send an event to trigger game-start on the server
     socket.emit('start-new-game', { gameType, gameYear, secondsRemaining });
   }
+
+  // clear out any previous game
+  dispatch(clearMap());
+  dispatch(updateMapDisplay(playing));
+
+  // grab map nodes and change color to deselected
+  const mapNodes = getState().mapNodes;
+  mapNodes
+    .style('fill', (d, i) => {
+      //TODO add in condition here for whether a state was present in a given year
+      const stateExists = true;
+      if (stateExists) return colors.deselected;
+      else return colors.disabled;
+    })
+    .style('stroke', colors.stroke);
 };
 
 
@@ -105,9 +120,9 @@ export const startGame = (gameType) => {
   // set isFirstGame to false
   dispatch(playFirstGame());
 
-  // clear out any previous game
-  dispatch(clearMap());
-  dispatch(updateMapDisplay(playing));
+  // // clear out any previous game
+  // dispatch(clearMap());
+  // dispatch(updateMapDisplay(playing));
 
   if (gameType === 'collab') {
     // FETCH GAME STATUS FROM SERVER
@@ -118,16 +133,16 @@ export const startGame = (gameType) => {
     createLocalGame(gameType);
   }
 
-  // grab map nodes and change color to deselected
-  const mapNodes = getState().mapNodes;
-  mapNodes
-    .style('fill', (d, i) => {
-      //TODO add in condition here for whether a state was present in a given year
-      const stateExists = true;
-      if (stateExists) return colors.deselected;
-      else return colors.disabled;
-    })
-    .style('stroke', colors.stroke);
+  // // grab map nodes and change color to deselected
+  // const mapNodes = getState().mapNodes;
+  // mapNodes
+  //   .style('fill', (d, i) => {
+  //     //TODO add in condition here for whether a state was present in a given year
+  //     const stateExists = true;
+  //     if (stateExists) return colors.deselected;
+  //     else return colors.disabled;
+  //   })
+  //   .style('stroke', colors.stroke);
 };
 
 // ------ TOGGLE STATE ON CLICK -----------------------------------------

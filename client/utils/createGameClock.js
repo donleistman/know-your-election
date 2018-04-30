@@ -1,4 +1,5 @@
 import { store, countdown, updateMessage } from '../store';
+import socket from '../socket';
 import { endGame } from './gameLogic';
 
 const { dispatch, getState } = store;
@@ -10,6 +11,7 @@ export const createGameClock = () => {
       dispatch(updateMessage(`Seconds Remaining: ${sec}`));
       dispatch(countdown());
     } else {
+      socket.emit('end-game');
       endGame();
     }
   }, 1000);

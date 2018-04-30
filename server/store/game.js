@@ -15,8 +15,8 @@ const initialState = {
  * ACTION TYPES
  */
 const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
-const GAME_START = 'GAME_START';
-const GAME_END = 'GAME_END';
+const GAME_START_SERVER = 'GAME_START_SERVER';
+const GAME_END_SERVER = 'GAME_END_SERVER';
 
 // TODO -- move players to a separate reducer
 const PLAYERS_INC = 'PLAYERS_INC';
@@ -27,15 +27,15 @@ const PLAYERS_DEC = 'PLAYERS_DEC';
  */
 
 const gameStartServer = (gameClock, gameType, gameYear, secondsRemaining) => ({
-  type: GAME_START,
+  type: GAME_START_SERVER,
   gameClock,
   gameType,
   gameYear,
   secondsRemaining
 });
 
-const gameEnd = () => ({
-  type: GAME_END
+const gameEndServer = () => ({
+  type: GAME_END_SERVER
 });
 
 const countdownServer = () => ({
@@ -63,7 +63,7 @@ const reducer = function (state = initialState, action) {
   const { gameClock, gameYear, gameType, secondsRemaining } = action;
 
   switch (action.type) {
-    case GAME_START:
+    case GAME_START_SERVER:
       return Object.assign({}, state, {
         isCurrentGame: true,
         secondsRemaining,
@@ -71,14 +71,8 @@ const reducer = function (state = initialState, action) {
         gameType,
         gameYear
       });
-    // case GAME_END:
-    //   return {
-    //     ...state,
-    //     isCurrentGame: false,
-    //     secondsRemaining: 0,
-    //     gameClock: null,
-    //     gameYear: null,
-    //   };
+    case GAME_END_SERVER:
+      return Object.assign({}, initialState);
     case COUNTDOWN_SECONDS:
       return Object.assign({}, state, { secondsRemaining: state.secondsRemaining - 1 });
 
@@ -95,7 +89,7 @@ const reducer = function (state = initialState, action) {
 module.exports = {
   reducer,
   gameStartServer,
-  gameEnd,
+  gameEndServer,
   countdownServer,
   playersInc,
   playersDec
