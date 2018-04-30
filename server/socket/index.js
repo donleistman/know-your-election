@@ -17,9 +17,10 @@ module.exports = (io) => {
     console.log(`A socket connection to the server has been made: ${socket.id}`);
 
     socket.on('players-inc', () => {
-      console.log('INCREMENT PLAYER COUNT ON SERVER');
-      dispatch(playersInc());
-      io.emit('update-players', getState().game.players);
+      const clientsConnected = Object.keys(io.engine.clients).length;
+      io.emit('update-players', clientsConnected);
+      // dispatch(playersInc());
+      // io.emit('update-players', getState().game.players);
     });
 
     socket.on('fetch-game', () => {
@@ -66,9 +67,10 @@ module.exports = (io) => {
 
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`);
-      console.log('DECREMENT PLAYER COUNT ON SERVER');
-      dispatch(playersDec());
-      io.emit('update-players', getState().game.players);
+      const clientsConnected = Object.keys(io.engine.clients).length;
+      io.emit('update-players', clientsConnected);
+      // dispatch(playersDec());
+      // io.emit('update-players', getState().game.players);
     });
 
     // ----HELPER FUNCTIONS -----------------------------------------------
