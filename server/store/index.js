@@ -6,9 +6,11 @@ const createLogger = require('redux-logger');
 const { composeWithDevTools } = require('redux-devtools-extension');
 
 const game = require('./game');
+const mapStatus = require('./mapStatus');
 
 const reducer = combineReducers({
-  game: game.reducer
+  game: game.reducer,
+  mapStatus: mapStatus.reducer
 });
 
 // HAD TO TAKE OUT MIDDLEWARE DUE TO AN ERROR

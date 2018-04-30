@@ -155,14 +155,14 @@ export const toggleState = function (data) {
   const stateId = Number(data.id);
 
   if (isCurrentGame) {
-    if (!mapStatus[stateId] || mapStatus[stateId] === 'Republican') {
-      dispatch(updateMap(stateId, 'Democrat'));
+    if (!mapStatus[stateId] || mapStatus[stateId] === 'republican') {
+      dispatch(updateMap(stateId, 'democrat'));
       newColor = colors['democrat'];
       if (gameType === 'collab') {
         socket.emit('toggle-state', { stateId, party: 'democrat' });
       }
-    } else if (mapStatus[stateId] === 'Democrat') {
-      dispatch(updateMap(stateId, 'Republican'));
+    } else if (mapStatus[stateId] === 'democrat') {
+      dispatch(updateMap(stateId, 'republican'));
       newColor = colors['republican'];
       if (gameType === 'collab') {
         socket.emit('toggle-state', { stateId, party: 'republican' });
@@ -221,7 +221,7 @@ export const showMapAnswers = () => {
   Object.keys(mapAnswers).forEach(stateId => {
     const state = mapAnswers[stateId];
     select(`#state${stateId}`)
-      .style('fill', colors[state.winner.toLowerCase()]);
+      .style('fill', colors[state.winner]);
   });
   dispatch(updateMapDisplay(playing));
 };

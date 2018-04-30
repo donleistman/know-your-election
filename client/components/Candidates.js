@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Container, Divider, Segment } from 'semantic-ui-react';
 import { colors, playing } from '../utils/constants';
+import { capitalizeFirstLetter } from '../utils';
 
 
 const Candidates = (props) => {
@@ -27,7 +28,7 @@ const Candidates = (props) => {
             className={'party-label'}
             style={{ backgroundColor: colors[candidate.party.toLowerCase()] }}
           >
-            {showCandidates && candidate.party}
+            {showCandidates && capitalizeFirstLetter(candidate.party)}
           </Segment>
           <div className="candidate-name">{candidate.name}</div>
           {(index !== legend.length - 1) && <Divider />}

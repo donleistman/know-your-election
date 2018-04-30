@@ -43,12 +43,12 @@ socket.on('connect', () => {
       let newColor;
 
       if (party === 'democrat') {
-        dispatch(updateMap(stateId, 'Democrat'));
+        dispatch(updateMap(stateId, 'democrat'));
       } else if (party === 'republican') {
-        dispatch(updateMap(stateId, 'Republican'));
+        dispatch(updateMap(stateId, 'republican'));
       }
 
-      newColor = colors[party.toLowerCase()];
+      newColor = colors[party];
 
       select(`#state${stateId}`)
         .style('fill', newColor);

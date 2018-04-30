@@ -3,13 +3,13 @@ const _2016 = {
     {
       "id": "1",
       "name": "Donald Trump",
-      "party": "Republican",
+      "party": "republican",
       year: 2016
     },
     {
       "id": "2",
       "name": "Hillary Clinton",
-      "party": "Democrat",
+      "party": "democrat",
       year: 2016
     },
   ],

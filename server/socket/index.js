@@ -2,8 +2,13 @@
 
 const store = require('../store');
 const {
-  playersInc, playersDec, countdownServer, gameStartServer, gameEndServer
+  playersInc,
+  playersDec,
+  countdownServer,
+  gameStartServer,
+  gameEndServer
 } = require('../store/game');
+const { updateMapServer, clearMapServer } = require('../store/mapStatus');
 
 const { dispatch, getState } = store;
 
@@ -23,6 +28,9 @@ module.exports = (io) => {
     });
 
     socket.on('start-new-game', ({ gameType, gameYear, secondsRemaining }) => {
+      // clear any map state from previous games
+      clearMapServer();
+
       // create a new game on the server store
       // for new players to grab game state
 
@@ -36,9 +44,15 @@ module.exports = (io) => {
       socket.broadcast.emit('new-game');
     });
 
+
     socket.on('toggle-state', ({ stateId, party }) => {
+      // update state of map on server for anyone joining later
+      dispatch(updateMapServer(stateId, party));
+
+      // broadcast change to clients
       socket.broadcast.emit('toggle-state', { stateId, party });
     });
+
 
     socket.on('end-game', () => {
       // tell clients to all end their games

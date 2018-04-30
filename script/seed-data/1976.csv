@@ -1,1 +1,54 @@
-year,stateId,name,ev,c1,c2,c1Id,c1name,c1party,c2Id,c2name,c2party1976,,CANDIDATES,,,,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,1,Alabama,9,9,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,2,Alaska,3,-,3,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,3,Arizona,6,-,6,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,4,Arkansas,6,6,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,5,California,45,-,45,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,6,Colorado,7,-,7,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,7,Connecticut,8,-,8,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,8,Delaware,3,3,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,9,D. C.,3,3,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,10,Florida,17,17,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,11,Georgia,12,12,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,12,Hawaii,4,4,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,13,Idaho,4,-,4,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,14,Illinois,26,-,26,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,15,Indiana,13,-,13,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,16,Iowa,8,-,8,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,17,Kansas,7,-,7,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,18,Kentucky,9,9,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,19,Louisiana,10,10,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,20,Maine,4,-,4,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,21,Maryland,10,10,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,22,Massachusetts,14,14,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,23,Michigan,21,-,21,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,24,Minnesota,10,10,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,25,Mississippi,7,7,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,26,Missouri,12,12,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,27,Montana,4,-,4,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,28,Nebraska,5,-,5,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,29,Nevada,3,-,3,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,30,New Hampshire,4,-,4,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,31,New Jersey,17,-,17,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,32,New Mexico,4,-,4,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,33,New York,41,41,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,34,North Carolina,13,13,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,35,North Dakota,3,-,3,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,36,Ohio,25,25,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,37,Oklahoma,8,-,8,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,38,Oregon,6,-,6,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,39,Pennsylvania,27,27,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,40,Rhode Island,4,4,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,41,South Carolina,8,8,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,42,South Dakota,4,-,4,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,43,Tennessee,10,10,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,44,Texas,26,26,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,45,Utah,4,-,4,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,46,Vermont,3,-,3,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,47,Virginia,12,-,12,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,48,Washington*,9,-,8,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,49,West Virginia,6,6,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,50,Wisconsin,11,11,-,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,51,Wyoming,3,-,3,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican1976,,Total,538,297,240,3,Jimmy Carter,Democrat,4,Gerald Ford,Republican
+democrat
+1976,,CANDIDATES,,,,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,1,Alabama,9,9,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,2,Alaska,3,-,3,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,3,Arizona,6,-,6,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,4,Arkansas,6,6,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,5,California,45,-,45,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,6,Colorado,7,-,7,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,7,Connecticut,8,-,8,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,8,Delaware,3,3,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,9,D. C.,3,3,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,10,Florida,17,17,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,11,Georgia,12,12,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,12,Hawaii,4,4,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,13,Idaho,4,-,4,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,14,Illinois,26,-,26,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,15,Indiana,13,-,13,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,16,Iowa,8,-,8,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,17,Kansas,7,-,7,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,18,Kentucky,9,9,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,19,Louisiana,10,10,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,20,Maine,4,-,4,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,21,Maryland,10,10,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,22,Massachusetts,14,14,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,23,Michigan,21,-,21,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,24,Minnesota,10,10,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,25,Mississippi,7,7,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,26,Missouri,12,12,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,27,Montana,4,-,4,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,28,Nebraska,5,-,5,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,29,Nevada,3,-,3,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,30,New Hampshire,4,-,4,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,31,New Jersey,17,-,17,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,32,New Mexico,4,-,4,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,33,New York,41,41,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,34,North Carolina,13,13,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,35,North Dakota,3,-,3,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,36,Ohio,25,25,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,37,Oklahoma,8,-,8,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,38,Oregon,6,-,6,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,39,Pennsylvania,27,27,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,40,Rhode Island,4,4,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,41,South Carolina,8,8,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,42,South Dakota,4,-,4,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,43,Tennessee,10,10,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,44,Texas,26,26,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,45,Utah,4,-,4,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,46,Vermont,3,-,3,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,47,Virginia,12,-,12,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,48,Washington*,9,-,8,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,49,West Virginia,6,6,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,50,Wisconsin,11,11,-,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,51,Wyoming,3,-,3,3,Jimmy Carter,democrat,4,Gerald Ford,republican
+1976,,Total,538,297,240,3,Jimmy Carter,democrat,4,Gerald Ford,republican
