@@ -26,7 +26,7 @@ socket.on('connect', () => {
     } else {
       const { gameYear, secondsRemaining } = serverGame;
       const isGameOnServer = true;
-      createLocalGame('collab', gameYear, secondsRemaining, isGameOnServer);
+      createLocalGame('collab', gameYear, secondsRemaining, isGameOnServer, serverGame.serverMap);
     }
   });
 

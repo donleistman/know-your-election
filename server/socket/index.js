@@ -23,13 +23,14 @@ module.exports = (io) => {
 
     socket.on('fetch-game', () => {
       const serverGame = getState().game;
+      const serverMap = getState().mapStatus;
       const { gameYear, gameType, secondsRemaining, isCurrentGame } = serverGame;
-      socket.emit('send-game', { gameYear, gameType, secondsRemaining, isCurrentGame });
+      socket.emit('send-game', { gameYear, gameType, secondsRemaining, isCurrentGame, serverMap });
     });
 
     socket.on('start-new-game', ({ gameType, gameYear, secondsRemaining }) => {
       // clear any map state from previous games
-      clearMapServer();
+      dispatch(clearMapServer());
 
       // create a new game on the server store
       // for new players to grab game state

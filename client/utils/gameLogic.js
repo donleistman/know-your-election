@@ -32,7 +32,7 @@ const { dispatch, getState } = store;
 
 // ----HELPER FUNCTIONS -----------------------------------------------
 // ----create a local game --------------------------------------------
-export const createLocalGame = (gameType, gameYear, secondsRemaining, isGameOnServer) => {
+export const createLocalGame = (gameType, gameYear, secondsRemaining, isGameOnServer, serverMap) => {
   if (!secondsRemaining) {
     secondsRemaining = 30;
   }
@@ -60,8 +60,11 @@ export const createLocalGame = (gameType, gameYear, secondsRemaining, isGameOnSe
   dispatch(clearMap());
   dispatch(updateMapDisplay(playing));
 
-  // grab map nodes and change color to deselected
+  // grab map nodes
   const mapNodes = getState().mapNodes;
+
+  // if (!isGameOnServer) {
+  //  change color to deselected
   mapNodes
     .style('fill', (d, i) => {
       //TODO add in condition here for whether a state was present in a given year
@@ -70,6 +73,23 @@ export const createLocalGame = (gameType, gameYear, secondsRemaining, isGameOnSe
       else return colors.disabled;
     })
     .style('stroke', colors.stroke);
+  // } else
+  if (isGameOnServer) {
+    // change color to match serverMap
+    console.log('theres a game on the server, the map is', serverMap);
+    let newColor;
+    Object.keys(serverMap).forEach(stateId => {
+      if (serverMap[stateId] === 'republican') {
+        dispatch(updateMap(stateId, 'republican'));
+        newColor = colors['republican'];
+      } else if (serverMap[stateId] === 'democrat') {
+        dispatch(updateMap(stateId, 'democrat'));
+        newColor = colors['democrat'];
+      }
+      select(`#state${stateId}`)
+        .style('fill', newColor);
+    });
+  }
 };
 
 
