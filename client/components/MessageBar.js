@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import { Segment, Header } from 'semantic-ui-react';
 
 export const MessageBar = (props) => {
+  let { secondsRemaining, message } = props;
 
+  if (secondsRemaining === -1) message = 'Time\'s Up!';
   return (
     <Segment clearing id="message-bar">
-      <h3 id="message">{props.message}</h3>
+      <h3 id="message"
+        className={secondsRemaining < 5 && secondsRemaining >= -1 && secondsRemaining !== null ? 'red' : null}>{message}</h3>
     </Segment>
   );
 };
@@ -16,7 +19,8 @@ export const MessageBar = (props) => {
  */
 const mapState = state => {
   return {
-    message: state.message
+    message: state.message,
+    secondsRemaining: state.game.secondsRemaining
   };
 };
 

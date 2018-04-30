@@ -53,6 +53,7 @@ path:hover {
 
 #header-container {
   width: 60%;
+  min-width: 650px;
   margin: 0 auto;
   background-color: rgb(253, 253, 253);
 }
@@ -83,7 +84,15 @@ path:hover {
   font-size: 1.5em;
 }
 
+#year {
+  margin: 0;
+  font-family: 'Bungee Shade', cursive;
+  text-align: center;
+  font-size: 2.5em;
+}
+
 #message-bar {
+  min-width: 650px;
   background-color: rgb(253, 253, 253);
   min-height: 55px;
   width: 60%;
@@ -93,7 +102,11 @@ path:hover {
 #message {
   font-family: 'Laila', cursive;
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.7em;
+}
+
+.red {
+  color: red;
 }
 
 #map-container {

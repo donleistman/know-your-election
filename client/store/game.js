@@ -5,7 +5,7 @@
 
 const initialState = {
   isCurrentGame: false,
-  secondsRemaining: 0,
+  secondsRemaining: null,
   gameClock: null,
   gameYear: null,
   gameType: null,
@@ -90,7 +90,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isCurrentGame: false,
-        secondsRemaining: 0,
+        secondsRemaining: null,
         gameClock: null,
         gameYear: null,
       };

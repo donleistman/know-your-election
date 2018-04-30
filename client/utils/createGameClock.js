@@ -10,7 +10,7 @@ export const createGameClock = () => {
     const { secondsRemaining, gameType } = getState().game;
     console.log(`Seconds Remaining: ${secondsRemaining}`);
     if (secondsRemaining >= 0) {
-      dispatch(updateMessage(`Seconds Remaining: ${secondsRemaining}`));
+      dispatch(updateMessage(`${secondsRemaining}`));
       dispatch(countdown());
     } else {
       console.log('calling endGame from ln15 in createGameClock');

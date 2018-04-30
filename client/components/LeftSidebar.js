@@ -20,7 +20,7 @@ const LeftSidebar = (props) => {
           endGame();
         }}>End Game</Button>}
       {!isCurrentGame && !isFirstGame &&
-        <BtnStart gameType={gameType} btnText="Try Again" />}
+        <BtnStart gameType={gameType} btnText="Try Another" />}
       <br /><br />
       {!isCurrentGame && !isFirstGame &&
         <BtnAnswers

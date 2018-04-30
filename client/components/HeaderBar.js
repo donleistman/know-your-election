@@ -13,7 +13,7 @@ export const HeaderBar = (props) => {
       <div className="banner-icon" />
       </h1>
       <h2 id="sub-banner">Guess the electoral map</h2>
-      {gameYear && <h2 id="sub-banner">Year: {gameYear}</h2>}
+      {gameYear && <h2 id="year">{gameYear}</h2>}
     </Segment>
   );
 };
