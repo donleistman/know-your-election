@@ -7,7 +7,11 @@ export const HeaderBar = (props) => {
 
   return (
     <Segment clearing id="header-container">
-      <h1 id="banner">Fill in the Map!</h1>
+      <h1 id="banner">
+        <div className="banner-icon" />
+        MAKE HISTORY
+      <div className="banner-icon" />
+      </h1>
       <h2 id="sub-banner">Guess the electoral map</h2>
       {gameYear && <h2 id="sub-banner">Year: {gameYear}</h2>}
     </Segment>
