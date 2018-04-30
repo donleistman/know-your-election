@@ -1,5 +1,5 @@
 
-const elections = [1976, 2016];
+const elections = [1964, 1976, 1996, 2004, 2016];
 
 const colors = {
   democrat: 'rgb(101, 188, 228)', // #65bce4

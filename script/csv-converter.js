@@ -1,8 +1,8 @@
 const csv = require('csvtojson');
-const csvFilePath = '/Users/Don/dev/fullstack/mapper/script/seed-data/1976.csv';
+const csvFilePath = '/Users/Don/dev/fullstack/mapper/script/seed-data/1996.csv';
 
 const fs = require('fs');
-let outputPath = '/Users/Don/dev/fullstack/mapper/script/seed-data/1976.js';
+let outputPath = '/Users/Don/dev/fullstack/mapper/script/seed-data/1996.js';
 
 let electionYear = 'YEAR';
 let startText = `const _${electionYear} = { candidates: [`;

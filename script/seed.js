@@ -1,8 +1,8 @@
 const db = require('../server/db');
 const { Candidate, State } = require('../server/db/models');
-const { _1976, _2016 } = require('./seed-data');
+const seedData = require('./seed-data');
 
-const elections = [_1976, _2016];
+const elections = Object.keys(seedData).map(key => seedData[key]);
 
 async function seed() {
   await db.sync({ force: true });
