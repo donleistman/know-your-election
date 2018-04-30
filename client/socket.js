@@ -24,6 +24,8 @@ socket.on('connect', () => {
     } else {
       // if there is a current game on the server
       // dispatch the entire server game to local state
+      console.log('there is a current game already!');
+      console.log('here is what it looks like', serverGame);
     }
   });
 });

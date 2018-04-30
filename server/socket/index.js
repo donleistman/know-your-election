@@ -17,7 +17,11 @@ module.exports = (io) => {
     });
 
     socket.on('fetch-game', () => {
-      socket.emit('send-game', getState().game);
+      console.log('fetching game!');
+      const serverGame = getState().game;
+      const { gameYear, gameType, secondsRemaining, isCurrentGame } = serverGame;
+      console.log('serverGame on server', serverGame);
+      socket.emit('send-game', { gameYear, gameType, secondsRemaining, isCurrentGame });
     });
 
     socket.on('start-new-game', ({ gameType, gameYear, secondsRemaining }) => {
