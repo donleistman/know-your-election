@@ -1,10 +1,13 @@
 // CLIENT SOCKET
 
 import io from 'socket.io-client';
-import { store, updatePlayers } from './store';
-import { createLocalGame } from './utils/gameLogic';
+import { select } from 'd3-selection';
 
-// const { dispatch } = store;
+import { store, updatePlayers, updateMap } from './store';
+import { createLocalGame } from './utils/gameLogic';
+import { colors } from './utils/constants';
+
+const { dispatch } = store;
 
 const socket = io(window.location.origin);
 
@@ -28,6 +31,22 @@ socket.on('connect', () => {
       createLocalGame('collab', gameYear, secondsRemaining);
     }
   });
+
+  socket.on('toggle-state', ({ stateId, party }) => {
+    let newColor;
+
+    if (party === 'democrat') {
+      dispatch(updateMap(stateId, 'Democrat'));
+    } else if (party === 'republican') {
+      dispatch(updateMap(stateId, 'Republican'));
+    }
+
+    newColor = colors[party.toLowerCase()];
+
+    select(`#state${stateId}`)
+      .style('fill', newColor);
+  });
+
 });
 
 export default socket;

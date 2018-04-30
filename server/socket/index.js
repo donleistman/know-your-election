@@ -35,6 +35,10 @@ module.exports = (io) => {
       dispatch(gameStartServer(gameClock, gameType, gameYear, secondsRemaining));
     });
 
+    socket.on('toggle-state', ({ stateId, party }) => {
+      socket.broadcast.emit('toggle-state', { stateId, party });
+    });
+
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`);
       dispatch(playersDec());

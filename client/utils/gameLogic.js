@@ -142,9 +142,11 @@ export const toggleState = function (data) {
     if (!mapStatus[stateId] || mapStatus[stateId] === 'Republican') {
       dispatch(updateMap(stateId, 'Democrat'));
       newColor = colors['democrat'];
+      socket.emit('toggle-state', { stateId, party: 'democrat' });
     } else if (mapStatus[stateId] === 'Democrat') {
       dispatch(updateMap(stateId, 'Republican'));
       newColor = colors['republican'];
+      socket.emit('toggle-state', { stateId, party: 'republican' });
     }
 
     select(`#state${stateId}`)
