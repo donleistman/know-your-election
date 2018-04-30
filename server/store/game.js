@@ -72,15 +72,20 @@ const reducer = function (state = initialState, action) {
         gameYear
       });
     case GAME_END_SERVER:
-      return Object.assign({}, initialState);
+      return Object.assign({}, initialState, { players: state.players });
     case COUNTDOWN_SECONDS:
       return Object.assign({}, state, { secondsRemaining: state.secondsRemaining - 1 });
 
     // TODO -- move players to a separate reducer
+    // ternary's are a bandaid fix for playercount bug right now
     case PLAYERS_INC:
-      return Object.assign({}, state, { players: state.players + 1 });
+      return Object.assign({}, state, {
+        players: state.players >= 0 ? state.players + 1 : 1
+      });
     case PLAYERS_DEC:
-      return Object.assign({}, state, { players: state.players - 1 });
+      return Object.assign({}, state, {
+        players: state.players > 1 ? state.players - 1 : 1
+      });
     default:
       return state;
   }

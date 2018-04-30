@@ -12,7 +12,9 @@ const BtnStart = (props) => {
   return (
     <Button
       id={isFirstGame ? 'start-btn' : ' '}
-      onClick={() => startGame(gameType)} >
+      onClick={() => {
+        startGame(gameType);
+      }} >
       {btnText}
     </Button>
   );

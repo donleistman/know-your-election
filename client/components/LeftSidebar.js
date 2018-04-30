@@ -1,3 +1,5 @@
+/*eslint-disable complexity */
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Segment } from 'semantic-ui-react';
@@ -7,7 +9,11 @@ import socket from '../socket';
 import { BtnAnswers, BtnStart, Candidates } from '.';
 
 const LeftSidebar = (props) => {
-  const { isCurrentGame, isFirstGame, gameType, players } = props;
+  const { isCurrentGame, isFirstGame, gameType } = props;
+  let { players } = props;
+
+  console.log('players', players);
+  if (players < 1) players = 1;
 
   return (
     <Segment id="leftSidebar">

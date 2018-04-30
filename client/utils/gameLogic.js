@@ -134,10 +134,15 @@ export const drawMap = function () {
 // --------- START GAME ----------------------------------------------
 export const startGame = (gameType) => {
 
+  // FOR NOW, moved this code to join game on connection, regardless of game type
   // if playing online, broadcast joining game
-  if (gameType === 'collab' && getState().game.isFirstGame) {
-    socket.emit('players-inc');
-  }
+  // if (gameType === 'collab' && getState().game.isFirstGame) {
+  //   socket.emit('players-inc');
+  // }
+
+  // if gameType is solo, disconnect socket
+  if (gameType === 'solo') socket.disconnect();
+
   // set isFirstGame to false
   dispatch(playFirstGame());
 

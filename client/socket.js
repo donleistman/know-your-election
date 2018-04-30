@@ -13,6 +13,7 @@ const socket = io(window.location.origin);
 
 socket.on('connect', () => {
   console.log('Connected!');
+  socket.emit('players-inc');
 
   socket.on('update-players', (numPlayers) => {
     store.dispatch(updatePlayers(numPlayers));
@@ -64,5 +65,6 @@ socket.on('connect', () => {
   });
 
 });
+
 
 export default socket;
