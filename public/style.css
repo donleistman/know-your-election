@@ -54,6 +54,8 @@ path:hover {
 #header-container {
   width: 60%;
   min-width: 650px;
+  height: 145px;
+  padding: 5px;
   margin: 0 auto;
   background-color: rgb(253, 253, 253);
 }
@@ -94,7 +96,7 @@ path:hover {
 #message-bar {
   min-width: 650px;
   background-color: rgb(253, 253, 253);
-  min-height: 55px;
+  min-height: 60px;
   width: 60%;
   margin: 0 auto;
 }
@@ -102,7 +104,7 @@ path:hover {
 #message {
   font-family: 'Laila', cursive;
   text-align: center;
-  font-size: 1.7em;
+  font-size: 1.6em;
 }
 
 .red {
