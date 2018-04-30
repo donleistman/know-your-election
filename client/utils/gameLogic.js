@@ -32,25 +32,26 @@ const { dispatch, getState } = store;
 
 // ----HELPER FUNCTIONS -----------------------------------------------
 // ----create a local game --------------------------------------------
-export const createLocalGame = (gameType, gameYear, secondsRemaining) => {
-  // create a game timer
-  const gameClock = createGameClock();
+export const createLocalGame = (gameType, gameYear, secondsRemaining, isGameOnServer) => {
   if (!secondsRemaining) {
     secondsRemaining = 30;
   }
+  // create a game timer
+  const gameClock = createGameClock();
 
   // choose a random election
   if (!gameYear) {
     gameYear = elections[Math.floor(Math.random() * elections.length)];
   }
 
+  console.log(`createLocalGame called with ${secondsRemaining} secondsRemaining`)
   // create a fresh game with timer, type, and year on local state
   dispatch(gameStart(gameClock, gameType, gameYear, secondsRemaining));
   // grab candidates and answers from API
   dispatch(fetchAnswers(gameYear));
   dispatch(fetchCandidates(gameYear));
 
-  if (gameType === 'collab') {
+  if (gameType === 'collab' && !isGameOnServer) {
     // send an event to trigger game-start on the server
     socket.emit('start-new-game', { gameType, gameYear, secondsRemaining });
   }

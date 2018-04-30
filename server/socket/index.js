@@ -56,14 +56,17 @@ module.exports = (io) => {
 
     // ----HELPER FUNCTIONS -----------------------------------------------
     const createServerGameClock = () => {
-      return setInterval(() => {
+      const gameClock = setInterval(() => {
         const sec = getState().game.secondsRemaining;
         if (sec >= 0) {
           dispatch(countdownServer());
         } else {
           // io.emit('end-game');
+          clearInterval(gameClock);
         }
       }, 1000);
+
+      return gameClock;
     };
   });
 };

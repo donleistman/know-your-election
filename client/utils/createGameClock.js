@@ -5,15 +5,23 @@ import { endGame } from './gameLogic';
 const { dispatch, getState } = store;
 
 export const createGameClock = () => {
-  return setInterval(() => {
-    const sec = getState().game.secondsRemaining;
-    if (sec >= 0) {
-      dispatch(updateMessage(`Seconds Remaining: ${sec}`));
+  console.log('creating local game clock on ln8')
+  const gameClock = setInterval(() => {
+    const { secondsRemaining, gameType } = getState().game;
+    console.log(`Seconds Remaining: ${secondsRemaining}`);
+    if (secondsRemaining >= 0) {
+      dispatch(updateMessage(`Seconds Remaining: ${secondsRemaining}`));
       dispatch(countdown());
     } else {
-      socket.emit('end-game');
+      console.log('calling endGame from ln15 in createGameClock');
       endGame();
+      if (gameType === 'collab') {
+        socket.emit('end-game');
+      }
+      clearInterval(gameClock);
     }
   }, 1000);
+
+  return gameClock;
 }
 

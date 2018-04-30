@@ -25,33 +25,42 @@ socket.on('connect', () => {
       createLocalGame('collab');
     } else {
       const { gameYear, secondsRemaining } = serverGame;
-      createLocalGame('collab', gameYear, secondsRemaining);
+      const isGameOnServer = true;
+      createLocalGame('collab', gameYear, secondsRemaining, isGameOnServer);
     }
   });
 
   socket.on('new-game', () => {
-    if (!getState().game.isCurrentGame) {
+    const { isCurrentGame, isFirstGame } = getState().game;
+    if (!isCurrentGame && !isFirstGame) {
       socket.emit('fetch-game');
     }
   });
 
   socket.on('toggle-state', ({ stateId, party }) => {
-    let newColor;
+    const { isCurrentGame } = getState().game;
+    if (isCurrentGame) {
+      let newColor;
 
-    if (party === 'democrat') {
-      dispatch(updateMap(stateId, 'Democrat'));
-    } else if (party === 'republican') {
-      dispatch(updateMap(stateId, 'Republican'));
+      if (party === 'democrat') {
+        dispatch(updateMap(stateId, 'Democrat'));
+      } else if (party === 'republican') {
+        dispatch(updateMap(stateId, 'Republican'));
+      }
+
+      newColor = colors[party.toLowerCase()];
+
+      select(`#state${stateId}`)
+        .style('fill', newColor);
     }
-
-    newColor = colors[party.toLowerCase()];
-
-    select(`#state${stateId}`)
-      .style('fill', newColor);
   });
 
   socket.on('end-game', () => {
-    endGame();
+    const { isCurrentGame } = getState().game;
+    if (isCurrentGame) {
+      console.log('calling gameEnd from ln60 in client socket');
+      endGame();
+    }
   });
 
 });

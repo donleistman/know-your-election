@@ -9,9 +9,9 @@ const initialState = {
   gameClock: null,
   gameYear: null,
   gameType: null,
+  isFirstGame: true,
 
   // TODO -- move players to a separate reducer
-  isFirstGame: true,
   players: 0
 };
 
@@ -22,9 +22,9 @@ const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
 const GAME_START = 'GAME_START';
 const GAME_JOIN = 'GAME_JOIN';
 const GAME_END = 'GAME_END';
+const PLAY_FIRST_GAME = 'PLAY_FIRST_GAME';
 
 // TODO -- move players to a separate reducer
-const PLAY_FIRST_GAME = 'PLAY_FIRST_GAME';
 const PLAYERS_INC = 'PLAYERS_INC';
 const UPDATE_PLAYERS = 'UPDATE_PLAYERS';
 
@@ -48,11 +48,11 @@ export const countdown = () => ({
   type: COUNTDOWN_SECONDS
 });
 
-
-// TODO -- move players to a separate reducer
 export const playFirstGame = () => ({
   type: PLAY_FIRST_GAME
 });
+
+// TODO -- move players to a separate reducer
 
 export const playersInc = () => ({
   type: PLAYERS_INC
@@ -96,10 +96,10 @@ export default function (state = initialState, action) {
       };
     case COUNTDOWN_SECONDS:
       return { ...state, secondsRemaining: state.secondsRemaining - 1 };
-
-    // TODO -- move players to a separate reducer
     case PLAY_FIRST_GAME:
       return { ...state, isFirstGame: false };
+
+    // TODO -- move players to a separate reducer
     case PLAYERS_INC:
       return { ...state, players: state.players + 1 };
     case UPDATE_PLAYERS:

@@ -16,6 +16,7 @@ const LeftSidebar = (props) => {
       {isCurrentGame &&
         <Button onClick={() => {
           socket.emit('end-game');
+          console.log('calling endGame from End Game Button')
           endGame();
         }}>End Game</Button>}
       {!isCurrentGame && !isFirstGame &&
