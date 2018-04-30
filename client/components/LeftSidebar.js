@@ -15,7 +15,7 @@ const LeftSidebar = (props) => {
         <Candidates />}
       {isCurrentGame &&
         <Button onClick={() => {
-          socket.emit('end-game');
+          if (gameType === 'collab') socket.emit('end-game');
           console.log('calling endGame from End Game Button')
           endGame();
         }}>End Game</Button>}

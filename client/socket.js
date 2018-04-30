@@ -38,8 +38,8 @@ socket.on('connect', () => {
   });
 
   socket.on('toggle-state', ({ stateId, party }) => {
-    const { isCurrentGame } = getState().game;
-    if (isCurrentGame) {
+    const { isCurrentGame, gameType } = getState().game;
+    if (isCurrentGame && gameType === 'collab') {
       let newColor;
 
       if (party === 'democrat') {
@@ -56,8 +56,8 @@ socket.on('connect', () => {
   });
 
   socket.on('end-game', () => {
-    const { isCurrentGame } = getState().game;
-    if (isCurrentGame) {
+    const { isCurrentGame, gameType } = getState().game;
+    if (isCurrentGame && gameType === 'collab') {
       console.log('calling gameEnd from ln60 in client socket');
       endGame();
     }
