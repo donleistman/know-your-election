@@ -22,10 +22,10 @@ socket.on('connect', () => {
       // create a new game here
       createLocalGame('collab');
     } else {
-      // if there is a current game on the server
-      // dispatch the entire server game to local state
       console.log('there is a current game already!');
       console.log('here is what it looks like', serverGame);
+      const { gameYear, secondsRemaining } = serverGame;
+      createLocalGame('collab', gameYear, secondsRemaining);
     }
   });
 });

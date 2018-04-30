@@ -79,8 +79,8 @@ const reducer = function (state = initialState, action) {
     //     gameClock: null,
     //     gameYear: null,
     //   };
-    // case COUNTDOWN_SECONDS:
-    //   return { ...state, secondsRemaining: state.secondsRemaining - 1 };
+    case COUNTDOWN_SECONDS:
+      return Object.assign({}, state, { secondsRemaining: state.secondsRemaining - 1 });
 
     // TODO -- move players to a separate reducer
     case PLAYERS_INC:

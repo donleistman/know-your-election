@@ -32,13 +32,17 @@ const { dispatch, getState } = store;
 
 // ----HELPER FUNCTIONS -----------------------------------------------
 // ----create a local game --------------------------------------------
-export const createLocalGame = (gameType) => {
+export const createLocalGame = (gameType, gameYear, secondsRemaining) => {
   // create a game timer
   const gameClock = createGameClock();
-  const secondsRemaining = 30;
+  if (!secondsRemaining) {
+    secondsRemaining = 30;
+  }
 
   // choose a random election
-  const gameYear = elections[Math.floor(Math.random() * elections.length)];
+  if (!gameYear) {
+    gameYear = elections[Math.floor(Math.random() * elections.length)];
+  }
 
   // create a fresh game with timer, type, and year on local state
   dispatch(gameStart(gameClock, gameType, gameYear, secondsRemaining));
