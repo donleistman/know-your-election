@@ -52,14 +52,9 @@ const playersDec = () => ({
 });
 
 /**
- * THUNK CREATORS
- */
-
-
-/**
  * REDUCER
  */
-const reducer = function (state = initialState, action) {
+const reducer = function(state = initialState, action) {
   const { gameClock, gameYear, gameType, secondsRemaining } = action;
 
   switch (action.type) {
@@ -74,7 +69,9 @@ const reducer = function (state = initialState, action) {
     case GAME_END_SERVER:
       return Object.assign({}, initialState, { players: state.players });
     case COUNTDOWN_SECONDS:
-      return Object.assign({}, state, { secondsRemaining: state.secondsRemaining - 1 });
+      return Object.assign({}, state, {
+        secondsRemaining: state.secondsRemaining - 1
+      });
 
     // TODO -- move players to a separate reducer
     // ternary's are a bandaid fix for playercount bug right now

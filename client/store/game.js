@@ -1,8 +1,6 @@
 // CLIENT STORE
 /* eslint-disable complexity*/
 
-// import socket from '../socket';
-
 const initialState = {
   isCurrentGame: false,
   secondsRemaining: null,
@@ -20,7 +18,6 @@ const initialState = {
  */
 const COUNTDOWN_SECONDS = 'COUNTDOWN_SECONDS';
 const GAME_START = 'GAME_START';
-const GAME_JOIN = 'GAME_JOIN';
 const GAME_END = 'GAME_END';
 const PLAY_FIRST_GAME = 'PLAY_FIRST_GAME';
 
@@ -58,7 +55,7 @@ export const playersInc = () => ({
   type: PLAYERS_INC
 });
 
-export const updatePlayers = (players) => ({
+export const updatePlayers = players => ({
   type: UPDATE_PLAYERS,
   players
 });
@@ -67,14 +64,11 @@ export const updatePlayers = (players) => ({
  * THUNK CREATORS
  */
 
-
 /**
  * REDUCER
  */
-export default function (state = initialState, action) {
-  const {
-    gameClock, gameYear, gameType, players, secondsRemaining
-  } = action;
+export default function(state = initialState, action) {
+  const { gameClock, gameYear, gameType, players, secondsRemaining } = action;
 
   switch (action.type) {
     case GAME_START:
@@ -92,7 +86,7 @@ export default function (state = initialState, action) {
         isCurrentGame: false,
         secondsRemaining: null,
         gameClock: null,
-        gameYear: null,
+        gameYear: null
       };
     case COUNTDOWN_SECONDS:
       return { ...state, secondsRemaining: state.secondsRemaining - 1 };

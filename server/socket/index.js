@@ -2,8 +2,6 @@
 
 const store = require('../store');
 const {
-  playersInc,
-  playersDec,
   countdownServer,
   gameStartServer,
   gameEndServer
@@ -12,22 +10,33 @@ const { updateMapServer, clearMapServer } = require('../store/mapStatus');
 
 const { dispatch, getState } = store;
 
-module.exports = (io) => {
-  io.on('connection', (socket) => {
-    console.log(`A socket connection to the server has been made: ${socket.id}`);
+module.exports = io => {
+  io.on('connection', socket => {
+    console.log(
+      `A socket connection to the server has been made: ${socket.id}`
+    );
 
     socket.on('players-inc', () => {
       const clientsConnected = Object.keys(io.engine.clients).length;
       io.emit('update-players', clientsConnected);
-      // dispatch(playersInc());
-      // io.emit('update-players', getState().game.players);
     });
 
     socket.on('fetch-game', () => {
       const serverGame = getState().game;
       const serverMap = getState().mapStatus;
-      const { gameYear, gameType, secondsRemaining, isCurrentGame } = serverGame;
-      socket.emit('send-game', { gameYear, gameType, secondsRemaining, isCurrentGame, serverMap });
+      const {
+        gameYear,
+        gameType,
+        secondsRemaining,
+        isCurrentGame
+      } = serverGame;
+      socket.emit('send-game', {
+        gameYear,
+        gameType,
+        secondsRemaining,
+        isCurrentGame,
+        serverMap
+      });
     });
 
     socket.on('start-new-game', ({ gameType, gameYear, secondsRemaining }) => {
@@ -41,12 +50,13 @@ module.exports = (io) => {
       const gameClock = createServerGameClock();
 
       // create a fresh game with timer, type, and year on local state
-      dispatch(gameStartServer(gameClock, gameType, gameYear, secondsRemaining));
+      dispatch(
+        gameStartServer(gameClock, gameType, gameYear, secondsRemaining)
+      );
 
       // emit event to cause clients to pull down new game
       socket.broadcast.emit('new-game');
     });
-
 
     socket.on('toggle-state', ({ stateId, party }) => {
       // update state of map on server for anyone joining later
@@ -55,7 +65,6 @@ module.exports = (io) => {
       // broadcast change to clients
       socket.broadcast.emit('toggle-state', { stateId, party });
     });
-
 
     socket.on('end-game', () => {
       // tell clients to all end their games
@@ -69,8 +78,6 @@ module.exports = (io) => {
       console.log(`Connection ${socket.id} has left the building`);
       const clientsConnected = Object.keys(io.engine.clients).length;
       io.emit('update-players', clientsConnected);
-      // dispatch(playersDec());
-      // io.emit('update-players', getState().game.players);
     });
 
     // ----HELPER FUNCTIONS -----------------------------------------------
@@ -80,7 +87,6 @@ module.exports = (io) => {
         if (sec >= 0) {
           dispatch(countdownServer());
         } else {
-          // io.emit('end-game');
           clearInterval(gameClock);
         }
       }, 1000);
@@ -89,6 +95,3 @@ module.exports = (io) => {
     };
   });
 };
-
-
-

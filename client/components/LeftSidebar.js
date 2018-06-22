@@ -8,32 +8,32 @@ import socket from '../socket';
 
 import { BtnAnswers, BtnStart, Candidates } from '.';
 
-const LeftSidebar = (props) => {
+const LeftSidebar = props => {
   const { isCurrentGame, isFirstGame, gameType } = props;
   let { players } = props;
 
-  console.log('players', players);
   if (players < 1) players = 1;
 
   return (
     <Segment id="leftSidebar">
-      {!isFirstGame &&
-        <Candidates />}
-      {isCurrentGame &&
-        <Button onClick={() => {
-          if (gameType === 'collab') socket.emit('end-game');
-          console.log('calling endGame from End Game Button')
-          endGame();
-        }}>End Game</Button>}
-      {!isCurrentGame && !isFirstGame &&
-        <BtnStart gameType={gameType} btnText="Try Another" />}
-      <br /><br />
-      {!isCurrentGame && !isFirstGame &&
-        <BtnAnswers
-          btnText={'Show Correct Answers'} />}
-      {gameType === 'collab' &&
-        <h3>{`${players} players online`}</h3>
-      }
+      {!isFirstGame && <Candidates />}
+      {isCurrentGame && (
+        <Button
+          onClick={() => {
+            if (gameType === 'collab') socket.emit('end-game');
+            endGame();
+          }}
+        >
+          End Game
+        </Button>
+      )}
+      {!isCurrentGame &&
+        !isFirstGame && <BtnStart gameType={gameType} btnText="Try Another" />}
+      <br />
+      <br />
+      {!isCurrentGame &&
+        !isFirstGame && <BtnAnswers btnText={'Show Correct Answers'} />}
+      {gameType === 'collab' && <h3>{`${players} players online`}</h3>}
     </Segment>
   );
 };
@@ -51,10 +51,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LeftSidebar);
-
+export default connect(mapStateToProps)(LeftSidebar);

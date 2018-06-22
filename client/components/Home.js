@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Game, HeaderBar, MessageBar } from '.';
 
-export const Home = () => {
-
+const Home = () => {
   return (
     <div>
       <HeaderBar />
@@ -13,18 +11,4 @@ export const Home = () => {
   );
 };
 
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-  };
-};
-
-const mapDispatch = dispatch => {
-  return {
-  };
-};
-
-export default connect(mapState, mapDispatch)(Home);
-
+export default Home;

@@ -15,7 +15,7 @@ socket.on('connect', () => {
   console.log('Connected!');
   socket.emit('players-inc');
 
-  socket.on('update-players', (numPlayers) => {
+  socket.on('update-players', numPlayers => {
     store.dispatch(updatePlayers(numPlayers));
   });
 
@@ -27,7 +27,13 @@ socket.on('connect', () => {
     } else {
       const { gameYear, secondsRemaining } = serverGame;
       const isGameOnServer = true;
-      createLocalGame('collab', gameYear, secondsRemaining, isGameOnServer, serverGame.serverMap);
+      createLocalGame(
+        'collab',
+        gameYear,
+        secondsRemaining,
+        isGameOnServer,
+        serverGame.serverMap
+      );
     }
   });
 
@@ -51,20 +57,16 @@ socket.on('connect', () => {
 
       newColor = colors[party];
 
-      select(`#state${stateId}`)
-        .style('fill', newColor);
+      select(`#state${stateId}`).style('fill', newColor);
     }
   });
 
   socket.on('end-game', () => {
     const { isCurrentGame, gameType } = getState().game;
     if (isCurrentGame && gameType === 'collab') {
-      console.log('calling gameEnd from ln60 in client socket');
       endGame();
     }
   });
-
 });
-
 
 export default socket;

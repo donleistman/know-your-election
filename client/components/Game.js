@@ -25,16 +25,19 @@ class Game extends React.Component {
         <Segment id="map-container">
           <svg
             id="map"
-            ref={node => this.node = node}
+            ref={node => {
+              this.node = node;
+            }}
             width={mapWidth}
             height={mapHeight}
           />
-          {!isCurrentGame && isFirstGame &&
-            <div id="start-btn-container">
-              <BtnStart gameType="solo" btnText="Play Solo" />
-              <BtnStart gameType="collab" btnText="Play Online!" />
-            </div>
-          }
+          {!isCurrentGame &&
+            isFirstGame && (
+              <div id="start-btn-container">
+                <BtnStart gameType="solo" btnText="Play Solo" />
+                <BtnStart gameType="collab" btnText="Play Online!" />
+              </div>
+            )}
         </Segment>
         <RightSidebar />
       </Segment.Group>
@@ -47,17 +50,9 @@ class Game extends React.Component {
  */
 const mapStateToProps = state => {
   return {
-    mapStatus: state.mapStatus,
     isCurrentGame: state.game.isCurrentGame,
-    isFirstGame: state.game.isFirstGame,
-    mapNodes: state.game.mapNodes
+    isFirstGame: state.game.isFirstGame
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
-
+export default connect(mapStateToProps)(Game);

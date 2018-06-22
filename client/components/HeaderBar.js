@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Segment, Header } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 
-export const HeaderBar = (props) => {
+export const HeaderBar = props => {
   const { gameYear } = props;
 
   return (
@@ -10,7 +10,7 @@ export const HeaderBar = (props) => {
       <h1 id="banner">
         <div className="banner-icon" />
         MAKE HISTORY
-      <div className="banner-icon" />
+        <div className="banner-icon" />
       </h1>
       <h2 id="sub-banner">Guess the electoral map</h2>
       {gameYear && <h2 id="year">{gameYear}</h2>}
@@ -27,10 +27,4 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
-  return {
-  };
-};
-
-export default connect(mapState, mapDispatch)(HeaderBar);
-
+export default connect(mapState)(HeaderBar);

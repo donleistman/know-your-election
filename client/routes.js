@@ -21,42 +21,41 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        {
-          isLoggedIn &&
+        {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
           </Switch>
-        }
+        )}
         {/* Displays our Login component as a fallback */}
         <Route component={Home} />
       </Switch>
-    )
+    );
   }
 }
 
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id
-  }
-}
+  };
+};
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch(me())
+      dispatch(me());
     }
-  }
-}
+  };
+};
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes))
+export default withRouter(connect(mapState, mapDispatch)(Routes));
 
 /**
  * PROP TYPES
@@ -64,4 +63,4 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
-}
+};

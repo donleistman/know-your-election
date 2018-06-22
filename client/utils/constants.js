@@ -1,4 +1,3 @@
-
 const elections = [1964, 1976, 1996, 2004, 2016];
 
 const colors = {
@@ -11,7 +10,6 @@ const colors = {
   stroke: 'rgb(78, 78, 78)',
   strokeDisabled: 'rgb(200, 200, 200)'
 };
-
 
 const mapWidth = 900;
 const mapHeight = 500;
@@ -28,4 +26,3 @@ module.exports = {
   submitted,
   playing
 };
-
