@@ -8,7 +8,7 @@ export const createGameClock = () => {
   const gameClock = setInterval(() => {
     const { secondsRemaining, gameType } = getState().game;
     if (secondsRemaining >= 0) {
-      dispatch(updateMessage(`${Math.floor(secondsRemaining / 60)}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining % 60}`));
+      dispatch(updateMessage(`${Math.floor(secondsRemaining / 60)}:${secondsRemaining % 60 < 10 ? '0' : ''}${secondsRemaining % 60}`));
       dispatch(countdown());
     } else {
       endGame();

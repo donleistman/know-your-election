@@ -33,24 +33,17 @@ const { dispatch, getState } = store;
 // ----create a local game --------------------------------------------
 export const createLocalGame = (
   gameType,
-  gameYear,
-  secondsRemaining,
-  isGameOnServer,
-  serverMap
+  gameYear = elections[Math.floor(Math.random() * elections.length)],
+  secondsRemaining = 120,
+  isGameOnServer = false,
+  serverMap = null
 ) => {
-  if (!secondsRemaining) {
-    secondsRemaining = 30;
-  }
   // create a game timer
   const gameClock = createGameClock();
 
-  // choose a random election
-  if (!gameYear) {
-    gameYear = elections[Math.floor(Math.random() * elections.length)];
-  }
-
   // create a fresh game with timer, type, and year on local state
   dispatch(gameStart(gameClock, gameType, gameYear, secondsRemaining));
+
   // grab candidates and answers from API
   dispatch(fetchAnswers(gameYear));
   dispatch(fetchCandidates(gameYear));
